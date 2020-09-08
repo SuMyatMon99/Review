@@ -19,6 +19,11 @@
 	</properties>
 
 	<dependencies>
+	<dependency>
+		<groupId>cglib</groupId>
+		<artifactId>cglib</artifactId>
+		<version>2.2.2</version>
+	</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -73,6 +78,44 @@
 			<scope>test</scope>
 		</dependency>
 		 -->
+  <!-- https://mvnrepository.com/artifact/com.google.maps/google-maps-services -->
+<dependency>
+    <groupId>com.google.maps</groupId>
+    <artifactId>google-maps-services</artifactId>
+    <version>0.15.0</version>
+</dependency>
+   <!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-servlet -->  
+<dependency>  
+    <groupId>org.apache.tiles</groupId>  
+    <artifactId>tiles-servlet</artifactId>  
+    <version>3.0.5</version>  
+</dependency>  
+    <!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-core -->  
+<dependency>  
+    <groupId>org.apache.tiles</groupId>  
+    <artifactId>tiles-core</artifactId>  
+    <version>3.0.5</version>  
+</dependency>  
+   <!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-el -->  
+<dependency>  
+    <groupId>org.apache.tiles</groupId>  
+    <artifactId>tiles-el</artifactId>  
+    <version>3.0.5</version>  
+</dependency>  
+<!-- Need this to compile JSP -->
+		<dependency>  
+    <groupId>org.apache.tiles</groupId>  
+    <artifactId>tiles-jsp</artifactId>  
+    <version>3.0.5</version>  
+</dependency>  
+<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-simple</artifactId>
+    <version>2.0.0-alpha1</version>
+    <scope>test</scope>
+</dependency>
+
 	</dependencies>
 
 	<build>
