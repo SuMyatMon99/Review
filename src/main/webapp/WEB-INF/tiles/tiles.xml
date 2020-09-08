@@ -20,5 +20,8 @@
     <definition name="category" extends="layout.basic">
     	<put-attribute name="body" value="/WEB-INF/category_list.jsp" />
     </definition>
+     <definition name="login" extends="layout.basic">
+    	<put-attribute name="body" value="/WEB-INF/login.jsp" />
+    </definition>
  
 </tiles-definitions>
