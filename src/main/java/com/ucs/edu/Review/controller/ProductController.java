@@ -37,4 +37,8 @@ public class ProductController {
 		model.addAttribute("products", productRepository.findAll());
 		return "product_list";
 	}
+	@GetMapping("/")
+	public String showIndex(Model model) {
+		return "index";
+	}
 }
