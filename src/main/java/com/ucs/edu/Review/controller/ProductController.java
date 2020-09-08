@@ -31,10 +31,13 @@ public class ProductController {
 		model.addAttribute("categories", categoryRepository.findAll());
 		return "create_product";
 	}
+	
 	@PostMapping("/save_product")
 	public String saveProduct(@ModelAttribute ("product") Product product, Model model) {
 		productRepository.save(product);
 		model.addAttribute("products", productRepository.findAll());
 		return "product_list";
+		
 	}
+	
 }
