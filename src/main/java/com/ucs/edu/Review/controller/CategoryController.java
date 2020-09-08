@@ -25,4 +25,10 @@ public class CategoryController {
 		model.addAttribute("categories", categoryRepository.findAll());
 		return "category_list";
 	}
+	
+	@GetMapping("/category_list")
+	public String showCategory(Model model) {
+		model.addAttribute("categories", categoryRepository.findAll());
+		return "category_list";
+	}
 }

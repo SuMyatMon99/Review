@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="ht-right">
-                    <a href="login.html" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                    <a href="login" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"
@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="./index.jsp">
+                            <a href="/">
                                 <img src="img/logo.png" alt="">
                             </a>
                         </div>
@@ -132,12 +132,10 @@
                         <li class="active"><a href="./index.html">Home</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="dropdown">
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                <li><a href="./check-out.html">Checkout</a></li>
-                                <li><a href="./faq.html">Faq</a></li>
-                                <li><a href="./register.html">Register</a></li>
-                                <li><a href="./login.html">Login</a></li>
+                                <li><a href="/blog-details">Blog Details</a></li>
+                                <li><a href="/faq">Faq</a></li>
+                                <li><a href="/register">Register</a></li>
+                                <li><a href="/login">Login</a></li>
                             </ul>
                         </li>
                     </ul>
