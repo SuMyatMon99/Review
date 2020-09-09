@@ -41,4 +41,23 @@ public class ProductController {
 	public String showIndex(Model model) {
 		return "index";
 	}
+	
+	@GetMapping("/register")
+	public String create_register(Model model) {
+		return "register";
+	}
+	@GetMapping("/login")
+	public String login_user(Model model) {
+		return "login";
+	}
+	
+	@GetMapping("/blog-details")
+	public String showBolgDetails(Model model) {
+		return "blog-details";
+	}
+	
+	@GetMapping("/faq")
+	public String showFAQ(Model model) {
+		return "faq";
+	}
 }

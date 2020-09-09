@@ -37,7 +37,7 @@ public class AppConfig {
 		resolver.setViewClass(TilesView.class);
 		return resolver;
 	}
-
+	
 	/*
 	 * @Bean public FormattingConversionServiceFactoryBean conversionService(){
 	 * FormattingConversionServiceFactoryBean conversionService=new
@@ -99,6 +99,7 @@ public class AppConfig {
 	 * commonsMultipartResolver.setMaxInMemorySize(500000000); return
 	 * commonsMultipartResolver; }
 	 */
+	
 	@Bean
 	public WebMvcConfigurer addResourceHandlers() {
 		return new WebMvcConfigurer() {

@@ -17,8 +17,24 @@
         <put-attribute name="body" value="/WEB-INF/index.jsp" />
     </definition>
     
-    <definition name="category" extends="layout.basic">
+    <definition name="category_list" extends="layout.basic">
     	<put-attribute name="body" value="/WEB-INF/category_list.jsp" />
+    </definition>
+    
+     <definition name="register" extends="layout.basic">
+    	<put-attribute name="body" value="/WEB-INF/register.jsp" />
+    </definition>
+    
+    <definition name="login" extends="layout.basic">
+    	<put-attribute name="body" value="/WEB-INF/login.jsp" />
+    </definition>
+    
+    <definition name="blog-details" extends="layout.basic">
+    	<put-attribute name="body" value="/WEB-INF/blog-details.jsp" />
+    </definition>
+    
+     <definition name="faq" extends="layout.basic">
+    	<put-attribute name="body" value="/WEB-INF/faq.jsp" />
     </definition>
  
 </tiles-definitions>
