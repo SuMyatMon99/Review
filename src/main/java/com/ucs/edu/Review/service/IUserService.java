@@ -2,8 +2,8 @@ package com.ucs.edu.Review.service;
 
 import java.util.List;
 
-import com.trustcore.security.dto.LoginUserDTO;
-import com.trustcore.security.model.UserRole;
+import com.ucs.edu.Review.dto.LoginUserDTO;
+import com.ucs.edu.Review.model.UserRole;
 
 public interface IUserService {
 	

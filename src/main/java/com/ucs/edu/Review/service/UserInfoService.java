@@ -7,10 +7,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.trustcore.security.dao.UserDao;
-import com.trustcore.security.dto.LoginUserDTO;
-import com.trustcore.security.model.LoginUser;
-import com.trustcore.security.model.UserRole;
+import com.ucs.edu.Review.dto.LoginUserDTO;
+import com.ucs.edu.Review.model.LoginUser;
+import com.ucs.edu.Review.model.UserRole;
+import com.ucs.edu.Review.repository.UserDao;
 
 @Service
 @Transactional
