@@ -1,3 +1,5 @@
+<%@ include file="/WEB-INF/views/common/include.jsp"%>
+<%@page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -39,21 +41,21 @@
                 <div class="col-lg-6 offset-lg-3">
                     <div class="register-form">
                         <h2>Register</h2>
-                        <form action="#">
+                        <form:form action="${pageContext.request.contextPath}/register" method="post" modelAttribute="userDTO">
                             <div class="group-input">
                                 <label for="username">Username or email address *</label>
-                                <input type="text" id="username">
+                                <form:input path="username" type="text"/>
                             </div>
                             <div class="group-input">
                                 <label for="pass">Password *</label>
-                                <input type="text" id="pass">
+                                <form:password path="password" type="text" id="pass"></form:input>
                             </div>
                             <div class="group-input">
                                 <label for="con-pass">Confirm Password *</label>
                                 <input type="text" id="con-pass">
                             </div>
                             <button type="submit" class="site-btn register-btn">REGISTER</button>
-                        </form>
+                        </form:form>
                         <div class="switch-login">
                             <a href="login" class="or-login">Or Login</a>
                         </div>

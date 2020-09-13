@@ -37,12 +37,8 @@ public class ProductController {
 		model.addAttribute("products", productRepository.findAll());
 		return "product_list";
 	}
-	@GetMapping("/")
-	public String showIndex(Model model) {
-		return "index";
-	}
 	
-	@GetMapping("/register")
+	/*@GetMapping("/register")
 	public String create_register(Model model) {
 		return "register";
 	}
@@ -50,6 +46,7 @@ public class ProductController {
 	public String login_user(Model model) {
 		return "login";
 	}
+	*/
 	
 	@GetMapping("/blog-details")
 	public String showBolgDetails(Model model) {
