@@ -40,8 +40,10 @@ public class Category implements Serializable{
 		this.cat_id = cat_id;
 		this.cat_name = cat_name;
 	}
+	
 	@OneToMany(mappedBy = "category")
 	private Set<Product> productList;
+	
 	public Category(Long cat_id, String cat_name, Set<Product> productList) {
 		super();
 		this.cat_id = cat_id;
