@@ -1,23 +1,31 @@
 package com.ucs.edu.Review.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 @Entity
 public class UserRole implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String roleName;
-	@ManyToMany(mappedBy="userRole")
-	private Set<LoginUser> user;
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="role_priviliges",joinColumns={@JoinColumn(name="RoleId",nullable=false)},inverseJoinColumns={@JoinColumn(name="PriviligesId",nullable=false)})
+	private List<Privileges> privilegesList=new ArrayList<Privileges>();
 	public int getId() {
 		return id;
 	}
@@ -30,12 +38,11 @@ public class UserRole implements Serializable{
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-	public Set<LoginUser> getUser() {
-		return user;
+	public List<Privileges> getPrivilegesList() {
+		return privilegesList;
 	}
-	public void setUser(Set<LoginUser> user) {
-		this.user = user;
+	public void setPrivilegesList(List<Privileges> privilegesList) {
+		this.privilegesList = privilegesList;
 	}
-	
 	
 }

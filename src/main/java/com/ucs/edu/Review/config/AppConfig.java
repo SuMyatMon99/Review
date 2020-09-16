@@ -1,6 +1,7 @@
 package com.ucs.edu.Review.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 @Configuration
+@ComponentScan("com.ucs.edu.Review.*")
 public class AppConfig {
 
 	@Bean
@@ -93,7 +95,11 @@ public class AppConfig {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-				registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/static/");
+				registry.addResourceHandler("/*.css/**").addResourceLocations("/static/css/");
+				registry.addResourceHandler("/*.*/**").addResourceLocations("/static/fonts/");
+				registry.addResourceHandler("/*.js/**").addResourceLocations("/static/js/");
+				registry.addResourceHandler("/*.*/**").addResourceLocations("/static/img/");
+
 			}
 
 		};

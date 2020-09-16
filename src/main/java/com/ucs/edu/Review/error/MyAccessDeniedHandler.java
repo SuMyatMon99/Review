@@ -1,3 +1,4 @@
+
 package com.ucs.edu.Review.error;
 
 import java.io.IOException;
@@ -17,24 +18,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyAccessDeniedHandler implements AccessDeniedHandler {
 
-    private static Logger logger = LoggerFactory.getLogger(MyAccessDeniedHandler.class);
+	private static Logger logger = LoggerFactory.getLogger(MyAccessDeniedHandler.class);
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
-		
-		Authentication auth
-        = SecurityContextHolder.getContext().getAuthentication();
 
-if (auth != null) {
-    logger.info("User '" + auth.getName()
-            + "' attempted to access the protected URL: "
-            + request.getRequestURI());
-}
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-response.sendRedirect(request.getContextPath() + "/403");
+		if (auth != null) {
+			logger.info(
+					"User '" + auth.getName() + "' attempted to access the protected URL: " + request.getRequestURI());
+		}
 
-		
+		response.sendRedirect(request.getContextPath() + "/403");
+
 	}
 
 }
