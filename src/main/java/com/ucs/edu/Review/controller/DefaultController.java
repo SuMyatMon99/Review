@@ -1,3 +1,4 @@
+
 package com.ucs.edu.Review.controller;
 
 import org.springframework.stereotype.Controller;
@@ -7,39 +8,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class DefaultController {
-	 @GetMapping("/")
-	    public String home1() {
-	        return "/home";
-	    }
 
-	    @GetMapping("/home")
-	    public String home() {
-	        return "/home";
-	    }
+	@GetMapping("/")
+	public String home1() {
+		return "index";
+	}
 
-	    @GetMapping("/admin")
-	    public String admin() {
-	        return "/admin";
-	    }
+	@GetMapping("/home")
+	public String home() {
+		return "/index";
+	}
 
-	    @GetMapping("/user")
-	    public String user() {
-	        return "/user";
-	    }
+	@GetMapping("/admin")
+	public String admin() {
+		return "/admin";
+	}
 
-	    @GetMapping("/about")
-	    public String about() {
-	        return "/about";
-	    }
+	@GetMapping("/user")
+	public String user() {
+		return "/user";
+	}
 
-	    @GetMapping("/login")
-	    public String login() {
-	        return "/login";
-	    }
+	@GetMapping("/about")
+	public String about() {
+		return "/about";
+	}
 
-	    @RequestMapping(value="/403")
-		public String accessDenied(Model model){
-			return "accessDenied";
-		}
+	@RequestMapping(value = "/403.html")
+	public String accessDenied(Model model) {
+		return "accessDenied";
+	}
 
 }

@@ -1,14 +1,13 @@
 package com.ucs.edu.Review.model;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class LoginUser implements Serializable{
@@ -23,15 +22,9 @@ public class LoginUser implements Serializable{
 	private String password;
 	private String email;
 	private boolean isActive;
-	@ManyToMany
-	private Set<UserRole> userRole;
-	
-	public Set<UserRole> getUserRole() {
-		return userRole;
-	}
-	public void setUserRole(Set<UserRole> userRole) {
-		this.userRole = userRole;
-	}
+	@OneToOne
+	@JoinColumn(name="roleId")
+	private UserRole userRole=new UserRole();
 	public int getId() {
 		return id;
 	}
@@ -61,6 +54,12 @@ public class LoginUser implements Serializable{
 	}
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+	public UserRole getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
 	}
 	
 
