@@ -40,7 +40,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
-                   <form:form method="post" action="/user/register.htm" modelAttribute="userDTO">
+                   <form:form method="post" action="${pageContext.request.contextPath}/register.htm" modelAttribute="userDTO">
 User Name:<form:input path="userName" type="text"/><br>
 Password: <form:password path="password" /><br>
 Role :	<form:select path="roleId">

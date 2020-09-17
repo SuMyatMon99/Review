@@ -95,11 +95,9 @@ public class AppConfig {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-				registry.addResourceHandler("/*.css/**").addResourceLocations("/static/css/");
-				registry.addResourceHandler("/*.*/**").addResourceLocations("/static/fonts/");
-				registry.addResourceHandler("/*.js/**").addResourceLocations("/static/js/");
-				registry.addResourceHandler("/*.*/**").addResourceLocations("/static/img/");
-
+				registry.addResourceHandler("/resources/**")
+			      .addResourceLocations("/resources/**","classpath:/static/");
+			
 			}
 
 		};

@@ -15,16 +15,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ucs.edu.Review.model.LoginUser;
 import com.ucs.edu.Review.model.Privileges;
-import com.ucs.edu.Review.repository.UserDao;
+import com.ucs.edu.Review.repository.UserRepository;
 @Service
-@Transactional
 public class UserService implements UserDetailsService {
 	@Autowired
-	UserDao userDao;
+	UserRepository userRepository;
+	@Transactional
+	@Override
 	public UserDetails loadUserByUsername(String name)
 			throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		LoginUser user=userDao.findUserByUserName(name);
+		LoginUser user=userRepository.findUserByUserName(name);
 		List<GrantedAuthority> authories=new ArrayList<GrantedAuthority>();
 		for(Privileges p : user.getUserRole().getPrivilegesList()){
 			GrantedAuthority authority = new SimpleGrantedAuthority(p.getRoleCode());

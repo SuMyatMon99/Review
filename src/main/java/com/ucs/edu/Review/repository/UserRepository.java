@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.ucs.edu.Review.model.LoginUser;
 import com.ucs.edu.Review.model.UserRole;
 @Repository
-public interface UserDao extends JpaRepository<LoginUser, Long> {
-	public LoginUser findUserByUserName(String email);
+public interface UserRepository extends JpaRepository<LoginUser, Long> {
+	public LoginUser findUserByUserName(String name);
 	
 	@Query("select s from UserRole s")
 	public List<UserRole> getUserRole();
