@@ -19,7 +19,7 @@
 </div>
 <div class="form-group">
 <label style="font-style: oblique; font-size: 20px;">Category:</label>
-<form:select path="category.cat_id" class="custom-select">
+<form:select path="category_id" class="custom-select">
 	<c:forEach items="${categories }" var="cat">
 	<form:option value="${cat.cat_id }">${cat.cat_name }</form:option>
 	</c:forEach>
@@ -31,7 +31,7 @@
 </div>
 <div class="form-group">
 <label style="font-style: oblique; font-size: 20px;">Shop:</label>
-<form:select path="shop.shop_id" class="custom-select">
+<form:select path="shop_id" class="custom-select">
 	<c:forEach items="${shops }" var="shop">
 	<form:option value="${shop.shop_id }">${shop.shop_name }</form:option>
 	</c:forEach>
@@ -39,7 +39,7 @@
 </div>
 <div class="form-group">
 <label style="font-style: oblique; font-size: 20px;">Brand:</label>
-<form:select path="brand.brand_id" class="custom-select">
+<form:select path="brand_id" class="custom-select">
 	<c:forEach items="${brands }" var="brand">
 	<form:option value="${brand.brand_id }">${brand.brand_name }</form:option>
 	</c:forEach>

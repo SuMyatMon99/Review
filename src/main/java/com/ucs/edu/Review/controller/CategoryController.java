@@ -7,28 +7,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.ucs.edu.Review.dto.CategoryDTO;
 import com.ucs.edu.Review.model.Category;
-import com.ucs.edu.Review.repository.CategoryRepository;
+import com.ucs.edu.Review.service.CategoryService;
 
 @Controller
 public class CategoryController {
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private CategoryService categoryService;
 	@GetMapping("/create_category")
 	public String createCategory(Model model) {
-		model.addAttribute("category", new Category());
+		model.addAttribute("category", new CategoryDTO());
 		return "create_category";
 	}
 	@PostMapping("/save_category")
-	public String saveCategory(@ModelAttribute ("category") Category category, Model model) {
-		categoryRepository.save(category);
-		model.addAttribute("categories", categoryRepository.findAll());
+	public String saveCategory(@ModelAttribute ("category") CategoryDTO category, Model model) {
+		categoryService.saveCategory(category);
+		model.addAttribute("categories", categoryService.getCategoryList());
 		return "category_list";
 	}
 	
 	@GetMapping("/category_list")
 	public String showCategory(Model model) {
-		model.addAttribute("categories", categoryRepository.findAll());
+		model.addAttribute("categories", categoryService.getCategoryList());
 		return "category_list";
 	}
 }

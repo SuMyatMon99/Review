@@ -7,34 +7,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.ucs.edu.Review.model.Product;
-import com.ucs.edu.Review.repository.BrandRepository;
-import com.ucs.edu.Review.repository.CategoryRepository;
-import com.ucs.edu.Review.repository.ProductRepository;
-import com.ucs.edu.Review.repository.ShopRepository;
+import com.ucs.edu.Review.dto.ProductDTO;
+import com.ucs.edu.Review.service.BrandService;
+import com.ucs.edu.Review.service.CategoryService;
+import com.ucs.edu.Review.service.ProductService;
+import com.ucs.edu.Review.service.ShopService;
 
 @Controller
 public class ProductController {
 	@Autowired
-	private ProductRepository productRepository;
-	@Autowired
-	private ShopRepository shopRepository;
-	@Autowired
-	private BrandRepository brandRepository;
-	@Autowired
-	private CategoryRepository categoryRepository;
+	private ProductService productService;
 	@GetMapping("/create_product")
 	public String createProduct(Model model) {
-		model.addAttribute("product", new Product());
-		model.addAttribute("shops", shopRepository.findAll());
-		model.addAttribute("brands", brandRepository.findAll());
-		model.addAttribute("categories", categoryRepository.findAll());
+		model.addAttribute("product", new ProductDTO());
+		model.addAttribute("shops", productService.getShopList());
+		model.addAttribute("brands", productService.getBrandList());
+		model.addAttribute("categories", productService.getCategoryList());
 		return "create_product";
 	}
 	@PostMapping("/save_product")
-	public String saveProduct(@ModelAttribute ("product") Product product, Model model) {
-		productRepository.save(product);
-		model.addAttribute("products", productRepository.findAll());
+	public String saveProduct(@ModelAttribute ("product") ProductDTO productDTO, Model model) {
+		productService.SaveProduct(productDTO);
+		model.addAttribute("products", productService.getProductList());
 		return "product_list";
 	}
 	
