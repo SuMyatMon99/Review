@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,20 +16,21 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.ucs.edu.Review.error.MyAccessDeniedHandler;
 import com.ucs.edu.Review.service.UserService;
 
-@EnableWebSecurity
-@EnableWebMvc
+
 @Configuration
+@EnableWebSecurity 
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	MyAccessDeniedHandler accessDeniedHandler;
 
 	@Autowired
-	UserService securityServiceImpl;
+	UserService userService;
 
-	@Override
+	
 
 	@Bean
+	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
@@ -37,21 +39,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http
+		.csrf().disable()
         .authorizeRequests()
-        .antMatchers("/static/**").permitAll()
-        .antMatchers("/", "/public/**","/user/login.htm","/user/register.htm").permitAll()
-            .antMatchers("/user/**").hasAuthority("ADMIN")
+        .antMatchers("/", "/public/**","/resources/**",
+        		"/create_shop","/shop_list","/save_shop",
+        		"/create_brand","/brand_list","/save_brand",
+        		"/create_product","/product_list","/save_product"
+        		,"/category_list","/save_category","/blog-details.htm","/faq.htm","/blog.htm",
+        		"/create_category","/create_location","/save_location","/location_list","/register.htm").permitAll()
+        	/*.antMatchers("/blog-details.htm").access("ADMIN")
+        	.antMatchers("/faq.htm").access("ADMIN")
+        	.antMatchers("/blog.htm").access("ADMIN")*/
+            .antMatchers("/users/**").hasAuthority("ADMIN")
             .anyRequest().fullyAuthenticated()
             .and()
         .formLogin()
-            .loginPage("/user/login.htm")
-            .failureUrl("/login.htm?error")
-            .usernameParameter("email")
+        .loginProcessingUrl("login.htm")
+        .loginPage("/login.htm")
+        	.failureUrl("/login.htm?error=1")
+        	.defaultSuccessUrl("/")
             .permitAll()
             .and()
         .logout()
          .logoutUrl("/logout.htm")
-            .logoutSuccessUrl("/")
+            .logoutSuccessUrl("/login.htm")
             .permitAll();	
 	}
 
@@ -61,9 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(securityServiceImpl).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
 
 	}
 }

@@ -3,7 +3,6 @@ package com.ucs.edu.Review.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,26 +14,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ucs.edu.Review.dto.LoginUserDTO;
-import com.ucs.edu.Review.service.IUserService;
+import com.ucs.edu.Review.service.UserInfoService;
 
 @Controller
 public class UserController {
 
 	@Autowired
-	IUserService userInfoService;
+	UserInfoService userInfoService;
 	
-	@RequestMapping(value="/user/register.htm",method=RequestMethod.GET)
+	@RequestMapping(value="/register.htm",method=RequestMethod.GET)
 	public String register(Model model){
 		model.addAttribute("userDTO", new LoginUserDTO());
 		model.addAttribute("roleList",userInfoService.getUserRoles());
 		return "register";
 	}
-	@RequestMapping(value="/user/register.htm",method=RequestMethod.POST)
+	@RequestMapping(value="/register.htm",method=RequestMethod.POST)
 	public String postRegister(@ModelAttribute(value="userDTO")LoginUserDTO userDTO ){
 		userInfoService.saveUser(userDTO);
 		return "redirect:/login.htm";
 	}
-	@RequestMapping(value="/user/login.htm")
+	@RequestMapping(value="/login.htm")
 	public String login(Model model){
 		return "login";
 	}

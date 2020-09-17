@@ -12,7 +12,7 @@
 <%@ include file="bootstrap.jsp"%>
 <div class="container">
 <h2 style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;">Add Location</h2>
-<form:form action="save_location" method="POST" modelAttribute="location" style="width:300px; color:rgba(246, 75, 8, 0.876);font-style: oblique;">
+<form:form action="/save_location" method="POST" modelAttribute="location" style="width:300px; color:rgba(246, 75, 8, 0.876);font-style: oblique;">
 <div class="form-group">
 		<label style="font-style: oblique; font-size: 20px;">Name:</label>
 		<form:input path="name" class="form-control" placeholder="Name..." style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"/>

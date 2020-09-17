@@ -25,7 +25,7 @@
 
     <!-- Register Section Begin -->
    <div class="panel-body">
-    <form action="/user/login.htm" method="post">
+    <form action="login.htm" method="POST">
         <fieldset>
             <legend>Please sign in</legend>
             <c:if test="${param.error != null}" >         
