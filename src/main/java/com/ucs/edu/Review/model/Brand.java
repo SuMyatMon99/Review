@@ -53,4 +53,5 @@ public class Brand implements Serializable{
 	public void setProductList(Set<Product> productList) {
 		this.productList = productList;
 	}
+	
 }

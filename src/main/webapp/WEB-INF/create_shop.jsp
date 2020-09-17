@@ -19,7 +19,7 @@
 </div>
 <div class="form-group">
 <label style="font-style: oblique; font-size: 20px;">Location:</label>
-<form:select path="location.location_id" class="custom-select">
+<form:select path="location_id" class="custom-select">
 	<c:forEach items="${locations }" var="loc">
 	<form:option value="${loc.location_id }">${loc.address }</form:option>
 	</c:forEach>

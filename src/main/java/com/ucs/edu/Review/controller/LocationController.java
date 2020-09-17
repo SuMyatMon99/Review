@@ -7,30 +7,31 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.ucs.edu.Review.dto.LocationDTO;
 import com.ucs.edu.Review.model.Location;
-import com.ucs.edu.Review.repository.LocationRepository;
+import com.ucs.edu.Review.service.LocationService;
 
 @Controller
 public class LocationController {
 
 	
 	@Autowired
-	private LocationRepository locationRepository;
-	 
+	private LocationService locationService;
+	
 	@GetMapping("/create_location")
 	public String createLocation(Model model) {
-		model.addAttribute("location", new Location());
+		model.addAttribute("location", new LocationDTO());
 		return "create_location";
 	}
 	@PostMapping("/save_location")
-	public String saveLocation(@ModelAttribute("location") Location location, Model model) {
-		locationRepository.save(location);
-		model.addAttribute("locations", locationRepository.findAll());
+	public String saveLocation(@ModelAttribute("location") LocationDTO locationDTO, Model model) {
+		locationService.saveLocation(locationDTO);
+		model.addAttribute("locations", locationService.getLocationList());
 		return "location_list";
 	}
 	@GetMapping("/location_list")
 	public String showLocations(Model model) {
-		model.addAttribute("locations", locationRepository.findAll());
+		model.addAttribute("locations", locationService.getLocationList());
 		return "location_list";
 	}
 	}

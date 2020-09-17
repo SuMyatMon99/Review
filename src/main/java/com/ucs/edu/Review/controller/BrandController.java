@@ -7,22 +7,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.ucs.edu.Review.dto.BrandDTO;
 import com.ucs.edu.Review.model.Brand;
-import com.ucs.edu.Review.repository.BrandRepository;
+import com.ucs.edu.Review.service.BrandService;
 
 @Controller
 public class BrandController {
 	@Autowired
-	private BrandRepository brandRepository;
+	private BrandService brandService;
 	@GetMapping("/create_brand")
 	public String createBrand(Model model) {
-		model.addAttribute("brand", new Brand());
+		model.addAttribute("brand", new BrandDTO());
 		return "create_brand";
 	}
 	@PostMapping("/save_brand")
-	public String saveBrand(@ModelAttribute ("brand") Brand brand, Model model) {
-		brandRepository.save(brand);
-		model.addAttribute("brands", brandRepository.findAll());
+	public String saveBrand(@ModelAttribute ("brand") BrandDTO brand, Model model) {
+		brandService.saveBrand(brand);
+		model.addAttribute("brands", brandService.getBrandList());
+		return "brand_list";
+	}
+	
+	@GetMapping("/brand_list")
+	public String showBrand(Model model) {
+		model.addAttribute("brand", brandService.getBrandList());
 		return "brand_list";
 	}
 }
