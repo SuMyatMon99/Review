@@ -30,6 +30,10 @@
 	<form:input path="price" class="form-control" placeholder="Price..." style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"/>
 </div>
 <div class="form-group">
+	<label style="font-style: oblique; font-size: 20px;">Review :</label>
+	<form:input path="descr" class="form-control" placeholder="Write your review...." width="200" style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"/>
+</div>
+<div class="form-group">
 <label style="font-style: oblique; font-size: 20px;">Shop:</label>
 <form:select path="shop_id" class="custom-select">
 	<c:forEach items="${shops }" var="shop">

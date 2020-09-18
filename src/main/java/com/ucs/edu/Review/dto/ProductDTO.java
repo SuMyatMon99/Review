@@ -6,12 +6,20 @@ public class ProductDTO {
 	private Long product_id;
 	private String product_name;
 	private Double price;
+	private String descr;
 	private String photoPath;
 	private MultipartFile file; 
 	private Long category_id;
 	private Long shop_id;
 	private Long brand_id;
 	
+
+	public String getDescr() {
+		return descr;
+	}
+	public void setDescr(String descr) {
+		this.descr = descr;
+	}
 	public String getPhotoPath() {
 		return photoPath;
 	}

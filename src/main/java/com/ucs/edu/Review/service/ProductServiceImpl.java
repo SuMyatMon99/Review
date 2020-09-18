@@ -47,6 +47,7 @@ public class ProductServiceImpl implements ProductService {
 		String path =serveletContext.getRealPath(UPLOAD_DIRECTORY);
 		String filename = productDTO.getFile().getOriginalFilename();
 		product.setProduct_name(productDTO.getProduct_name());
+		product.setDescr(productDTO.getDescr());
 		System.out.println(path+" "+filename);  
 		try {
 			byte[] bytes = productDTO.getFile().getBytes();

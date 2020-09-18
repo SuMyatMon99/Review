@@ -22,18 +22,24 @@ public class Product implements Serializable{
 	private String product_name;
 	private Double price;
 	private String photoPath;
+	private String descr;
+	@ManyToOne
+	@JoinColumn(name="cat_id")
+	private Category category;
+	@ManyToOne
+	@JoinColumn(name="brand_id")
+	private Brand brand;
+	@ManyToOne
+	@JoinColumn(name="shop_id")
+	private Shop shop;
+
 	
 	
-	public Product(Long product_id, String product_name, Double price, String photoPath, Category category, Brand brand,
-			Shop shop) {
-		super();
-		this.product_id = product_id;
-		this.product_name = product_name;
-		this.price = price;
-		this.photoPath = photoPath;
-		this.category = category;
-		this.brand = brand;
-		this.shop = shop;
+	public String getDescr() {
+		return descr;
+	}
+	public void setDescr(String descr) {
+		this.descr = descr;
 	}
 	public String getPhotoPath() {
 		return photoPath;
@@ -50,15 +56,6 @@ public class Product implements Serializable{
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	@ManyToOne
-	@JoinColumn(name="category_id")
-	private Category category;
-	@ManyToOne
-	@JoinColumn(name="brand_id")
-	private Brand brand;
-	@ManyToOne
-	@JoinColumn(name="shop_id")
-	private Shop shop;
 	public Product(Long product_id, String product_name, Double price, Category category, Brand brand, Shop shop) {
 		super();
 		this.product_id = product_id;

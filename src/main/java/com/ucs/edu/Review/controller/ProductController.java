@@ -35,7 +35,11 @@ public class ProductController {
 		model.addAttribute("products", productService.getProductList());
 		return "product_list";
 	}
-	
+	@GetMapping("/products/{name}")
+	public String showProduct(Model model) {
+		model.addAttribute("products", productService.getProductList());
+		return "product_list";
+	}
 	/*@GetMapping("/register")
 	public String create_register(Model model) {
 		return "register";
