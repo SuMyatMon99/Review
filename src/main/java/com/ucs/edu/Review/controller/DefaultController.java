@@ -14,19 +14,19 @@ public class DefaultController {
 		return "index";
 	}
 
-	@GetMapping("/home")
+	@GetMapping("/blog-details.htm")
 	public String home() {
-		return "/index";
+		return "/blog-details";
 	}
 
-	@GetMapping("/admin")
+	@GetMapping("/blog.htm")
 	public String admin() {
-		return "/admin";
+		return "/blog";
 	}
 
-	@GetMapping("/user")
+	@GetMapping("/faq.htm")
 	public String user() {
-		return "/user";
+		return "/faq";
 	}
 
 	@GetMapping("/about")

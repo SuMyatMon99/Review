@@ -9,7 +9,7 @@ import com.ucs.edu.Review.model.Product;
 import com.ucs.edu.Review.model.Shop;
 
 public interface ProductService {
-	public void SaveProduct(ProductDTO productDTO);
+	public void SaveProduct(ProductDTO productDTO) throws Exception;
 	public List<Product> getProductList();
 	public List<Brand> getBrandList();
 	public List<Category> getCategoryList();

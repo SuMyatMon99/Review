@@ -6,12 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ucs.edu.Review.dto.ProductDTO;
-import com.ucs.edu.Review.service.BrandService;
-import com.ucs.edu.Review.service.CategoryService;
 import com.ucs.edu.Review.service.ProductService;
-import com.ucs.edu.Review.service.ShopService;
 
 @Controller
 public class ProductController {
@@ -26,12 +24,22 @@ public class ProductController {
 		return "create_product";
 	}
 	@PostMapping("/save_product")
-	public String saveProduct(@ModelAttribute ("product") ProductDTO productDTO, Model model) {
+	public String saveProduct(@ModelAttribute ("product") ProductDTO productDTO, Model model) throws Exception {
 		productService.SaveProduct(productDTO);
 		model.addAttribute("products", productService.getProductList());
 		return "product_list";
 	}
 	
+	@GetMapping("/product_list")
+	public String showProductList(Model model) {
+		model.addAttribute("products", productService.getProductList());
+		return "product_list";
+	}
+	@GetMapping("/products/{name}")
+	public String showProduct(Model model) {
+		model.addAttribute("products", productService.getProductList());
+		return "product_list";
+	}
 	/*@GetMapping("/register")
 	public String create_register(Model model) {
 		return "register";

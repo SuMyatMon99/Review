@@ -97,6 +97,8 @@ public class AppConfig {
 			public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 				registry.addResourceHandler("/resources/**")
 			      .addResourceLocations("/resources/**","classpath:/static/");
+				registry.addResourceHandler("/images/**")
+			      .addResourceLocations("/images/**","/images/");
 			
 			}
 

@@ -11,30 +11,24 @@
 <%@ include file="bootstrap.jsp"%>
 <div class="container">
 <h3 style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"> Shop List</h3>
-<table class="table" style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;">
-	<thead>
-		<tr>
-			<th>No</th>
-			<th>Name</th>
-			<th>Category</th>
-			<th>Price</th>
-			<th>Brand</th>
-			<th>Shop</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach items="${products }" var="prod" varStatus="row">
-			<tr>
-				<td>${row.count }</td>
-				<td>${prod.product_name }</td>
-				<td>${prod.category.cat_name }</td>
-				<td>${prod.price }</td>
-				<td>${prod.brand.brand_name }</td>
-				<td>${prod.shop.shop_name }</td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
+<div class="row">
+<c:forEach items="${products }" var="prod" varStatus="row">
+<div class="col-4">
+<div class="card">
+  <img class="card-img-top" src="./images/${prod.photoPath}" alt="image" width="200">
+  <div class="card-body">
+    <h5 class="card-title">${prod.product_name }</h5>
+    <p class="card-text">Shop : ${prod.shop.shop_name }</p>
+    <p class="card-text">Description : ${prod.descr}</p>
+    <ul class="nav bg-light">
+    <li class="nav-item"><a href="#" class="btn btn-light nav-link">Comment</a></li>
+    <li class="nav-item"><a href="#" class="btn btn-light nav-link">Vote</a></li>
+    </ul>   
+  </div>
+</div>
+</div>
+</c:forEach>
+</div>
 </div>
 </body>
 </html>
