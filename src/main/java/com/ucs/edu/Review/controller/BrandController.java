@@ -29,7 +29,7 @@ public class BrandController {
 	
 	@GetMapping("/brand_list")
 	public String showBrand(Model model) {
-		model.addAttribute("brand", brandService.getBrandList());
+		model.addAttribute("brands", brandService.getBrandList());
 		return "brand_list";
 	}
 }

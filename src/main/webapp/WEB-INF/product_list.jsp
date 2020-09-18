@@ -15,6 +15,7 @@
 	<thead>
 		<tr>
 			<th>No</th>
+			<th>Photo</th>
 			<th>Name</th>
 			<th>Category</th>
 			<th>Price</th>
@@ -26,6 +27,7 @@
 		<c:forEach items="${products }" var="prod" varStatus="row">
 			<tr>
 				<td>${row.count }</td>
+				<td><img src="/webapp/images/${prod.photoPath }" alt="Image"></td>
 				<td>${prod.product_name }</td>
 				<td>${prod.category.cat_name }</td>
 				<td>${prod.price }</td>

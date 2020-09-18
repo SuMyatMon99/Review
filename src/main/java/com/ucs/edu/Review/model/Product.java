@@ -21,6 +21,29 @@ public class Product implements Serializable{
 	private Long product_id;
 	private String product_name;
 	private Double price;
+	private String photoPath;
+	
+	
+	public Product(Long product_id, String product_name, Double price, String photoPath, Category category, Brand brand,
+			Shop shop) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.price = price;
+		this.photoPath = photoPath;
+		this.category = category;
+		this.brand = brand;
+		this.shop = shop;
+	}
+	public String getPhotoPath() {
+		return photoPath;
+	}
+	public void setPhotoPath(String photoPath) {
+		this.photoPath = photoPath;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	public Double getPrice() {
 		return price;
 	}

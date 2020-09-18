@@ -1,13 +1,29 @@
 package com.ucs.edu.Review.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductDTO {
 	private Long product_id;
 	private String product_name;
 	private Double price;
+	private String photoPath;
+	private MultipartFile file; 
 	private Long category_id;
 	private Long shop_id;
 	private Long brand_id;
 	
+	public String getPhotoPath() {
+		return photoPath;
+	}
+	public void setPhotoPath(String photoPath) {
+		this.photoPath = photoPath;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	public Long getShop_id() {
 		return shop_id;
 	}
