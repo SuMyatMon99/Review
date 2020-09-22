@@ -1,34 +1,152 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ include file="/WEB-INF/common/include.jsp"%>    
+	pageEncoding="ISO-8859-1"%>
+<%@ include file="/WEB-INF/common/include.jsp"%>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="ISO-8859-1">
-<title>Shop List</title>
+<title>Product List</title>
+<style>
+#card-footer {
+	width: 100%;
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+//
+rating
+	* {
+	margin: 0;
+	padding: 0;
+}
+
+.rate {
+	float: left;
+	height: 46px;
+	padding: 0 10px;
+}
+
+.rate:not(:checked)>input {
+	position: absolute;
+	top: -9999px;
+}
+
+.rate:not(:checked)>label {
+	float: right;
+	width: 1em;
+	overflow: hidden;
+	white-space: nowrap;
+	cursor: pointer;
+	font-size: 30px;
+	color: #ccc;
+}
+
+.rate:not(:checked)>label:before {
+	content: '* ';
+}
+
+.rate>input:checked ~ label {
+	color: #ffc700;
+}
+
+.rate:not(:checked)>label:hover, .rate:not(:checked)>label:hover ~ label
+	{
+	color: #deb217;
+}
+
+.rate>input:checked+label:hover, .rate>input:checked+label:hover ~ label,
+	.rate>input:checked ~ label:hover, .rate>input:checked ~ label:hover ~
+	label, .rate>label:hover ~ input:checked ~ label {
+	color: #c59b08;
+}
+//
+end
+
+ 
+
+rating
+</style>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+<link th:rel="stylesheet"
+	th:href="@{/assets/bootstrapless-star-rating/star-rating.css} " />
 </head>
 <body>
-<%@ include file="bootstrap.jsp"%>
-<div class="container">
-<h3 style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"> Shop List</h3>
-<div class="row">
-<c:forEach items="${products }" var="prod" varStatus="row">
-<div class="col-4">
-<div class="card">
-  <img class="card-img-top" src="./images/${prod.photoPath}" alt="image" width="200">
-  <div class="card-body">
-    <h5 class="card-title">${prod.product_name }</h5>
-    <p class="card-text">Shop : ${prod.shop.shop_name }</p>
-    <p class="card-text">Description : ${prod.descr}</p>
-    <ul class="nav bg-light">
-    <li class="nav-item"><a href="#" class="btn btn-light nav-link">Comment</a></li>
-    <li class="nav-item"><a href="#" class="btn btn-light nav-link">Vote</a></li>
-    </ul>   
-  </div>
-</div>
-</div>
-</c:forEach>
-</div>
-</div>
+
+	<div class="container-fluid">
+			<div class="text-center">
+				<h1>Recent Reviews</h1>
+			</div>
+			<div class="container">
+			<div class="row">
+			<div class="col-9">
+				<div class="row">
+					<c:forEach items="${products}" var="prod" varStatus="row">
+						<div class="card m-3 col-5" style="max-height: 300px;">
+							<div class="row no-gutters">
+								<div class="col-md-4 mt-5">
+									<img src="/images/${prod.photoPath }" class="card-img"
+										alt="...">
+								</div>
+								<div class="col-md-8">
+									<div class="card-body">
+										<div class="row">
+											<h3 class="card-title">${prod.product_name }</h3>
+											<span class="card-text"
+												style="max-height: 150px; overflow: hidden; margin-top: 20px; margin-bottom: 20px;">${prod.descr }
+											</span> <strong class="card-text">${prod.shop.shop_name}</strong>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+			<div class="col-2">
+					<c:forEach items="${products}" var="prod" varStatus="row">
+						<div class="card col-12" style="max-height: 200px; overflow:hidden;">
+							<div class="row no-gutters">
+								<div class="col-md-6 mt-2">
+								
+									<img src="/images/${prod.photoPath }" class="card-img"
+										alt="...">
+										</div>
+										<div class="col-md-6 mt-2">
+										<strong class="card-title">${prod.product_name }</strong>
+								</div>
+								<div class="col-md-12">
+									<div class="card-body">					
+											<span class="card-text"
+												style="max-height: 150px; overflow: hidden; margin-top: 20px; margin-bottom: 20px;">${prod.descr }
+											</span><br/> 
+											<strong class="card-text">${prod.shop.shop_name}</strong>
+											<br/><br/><a href="#" class="btn btn-light">More>></a>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</c:forEach>
+					</div>
+					</div>
+			</div>
+			</div>
+		<script type="text/javascript">
+			function clearSearch() {
+				window.location = "[[@{/product_list}]]";
+			}
+		</script>
+		<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+		<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/assets/bootstrapless-star-rating/star-rating.min.js}"></script>
 </body>
 </html>

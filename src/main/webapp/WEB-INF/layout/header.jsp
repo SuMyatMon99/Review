@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+   <head>
+   </head>
+   <body>
+ <%@ include file="/WEB-INF/common/include.jsp"%>   
  <header class="header-section">
         <div class="header-top">
             <div class="container">
@@ -42,10 +51,17 @@
                     </div>
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
-                           <button type="button" class="category-btn">All Categories</button>
+                         <button type="button" class="category-btn">All Categories</button>
+                        <%-- <select name="category_select" class="form-select">
+                        <c:forEach items="${category}" var="cat" varStatus="row">
+							<option value="${ cat.cat_id}">${cat.cat_name }</option>
+                           </c:forEach>
+                        </select> --%>
                             <div class="input-group">
-                                <input type="text" placeholder="What do you need?">
-                                <button type="button"><i class="ti-search"></i></button>
+                            <form th:action="@{/}">
+    							<input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+   								<button type="submit"><i class="ti-search"></i></button>
+							</form> 
                             </div>
                         </div>
                     </div>
@@ -116,14 +132,9 @@
                         <i class="ti-menu"></i>
                         <span>All departments</span>
                         <ul class="depart-hover">
-                            <li class="active"><a href="#">Women’s Clothing</a></li>
-                            <li><a href="#">Men’s Clothing</a></li>
-                            <li><a href="#">Underwear</a></li>
-                            <li><a href="#">Kid's Clothing</a></li>
-                            <li><a href="#">Brand Fashion</a></li>
-                            <li><a href="#">Accessories/Shoes</a></li>
-                            <li><a href="#">Luxury Brands</a></li>
-                            <li><a href="#">Brand Outdoor Apparel</a></li>
+                       <c:forEach items="${category}" var="cat" varStatus="row">
+                            <li class="${cat.cat_id}"><a href="#">${cat.cat_name }</a></li>
+                           </c:forEach>
                         </ul>
                     </div>
                 </div>
@@ -144,3 +155,5 @@
             </div>
         </div>
     </header>
+    </body>
+    </html>

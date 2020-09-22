@@ -1,13 +1,16 @@
 package com.ucs.edu.Review.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Product implements Serializable{
@@ -23,6 +26,7 @@ public class Product implements Serializable{
 	private Double price;
 	private String photoPath;
 	private String descr;
+	private Float totalRating;
 	@ManyToOne
 	@JoinColumn(name="cat_id")
 	private Category category;
@@ -32,9 +36,13 @@ public class Product implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="shop_id")
 	private Shop shop;
-
 	
-	
+	public Float getTotalRating() {
+		return totalRating;
+	}
+	public void setTotalRating(Float totalRating) {
+		this.totalRating = totalRating;
+	}
 	public String getDescr() {
 		return descr;
 	}

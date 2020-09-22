@@ -57,6 +57,11 @@
     	<put-attribute name="body" value="/WEB-INF/login.jsp"/>
     </definition>
     
+     <!-- profile -->
+    <definition name="profile" extends="layout.basic">
+    	<put-attribute name="body" value="/WEB-INF/profile.jsp"/>
+    </definition>
+    
     <definition name="blog-details" extends="layout.basic">
     	<put-attribute name="body" value="/WEB-INF/blog-details.jsp"/>
     </definition>
