@@ -11,14 +11,14 @@
         <div class="header-top">
             <div class="container">
                 <div class="ht-left">
-                    <div class="mail-service">
+                   <!--  <div class="mail-service">
                         <i class=" fa fa-envelope"></i>
                         hello.review@gmail.com
                     </div>
                     <div class="phone-service">
                         <i class=" fa fa-phone"></i>
                         +959 439928839
-                    </div>
+                    </div> -->
                 </div>
                 <div class="ht-right">
                     <a href="login" class="login-panel"><i class="fa fa-user"></i>Login</a>
@@ -51,12 +51,13 @@
                     </div>
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
-                         <button type="button" class="category-btn">All Categories</button>
-                        <%-- <select name="category_select" class="form-select">
-                        <c:forEach items="${category}" var="cat" varStatus="row">
+                         <form th:action="@{/}">
+                        <select th:name="cat_id"  class="category-btn form-select">
+                        <c:forEach items="${categories}" var="cat" varStatus="row">
 							<option value="${ cat.cat_id}">${cat.cat_name }</option>
                            </c:forEach>
-                        </select> --%>
+                        </select>
+                        </form>
                             <div class="input-group">
                             <form th:action="@{/}">
     							<input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
@@ -132,8 +133,8 @@
                         <i class="ti-menu"></i>
                         <span>All departments</span>
                         <ul class="depart-hover">
-                       <c:forEach items="${category}" var="cat" varStatus="row">
-                            <li class="${cat.cat_id}"><a href="#">${cat.cat_name }</a></li>
+                       <c:forEach items="${categories}" var="cat" varStatus="row">
+                            <li th:vlaue="${cat.cat_id }"><a href="@{/}">${cat.cat_name }</a></li>
                            </c:forEach>
                         </ul>
                     </div>

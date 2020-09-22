@@ -17,5 +17,6 @@ public interface ProductService {
 	public List<Shop> getShopList();
 	public LoginUser getLoginUser(Long id);
 	
+	public List<Product> getProductListByCategory(Long category_id);
 
 }

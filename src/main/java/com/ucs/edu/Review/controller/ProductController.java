@@ -8,9 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ucs.edu.Review.dto.ProductDTO;
 import com.ucs.edu.Review.model.Product;
@@ -38,21 +37,34 @@ public class ProductController {
 	public String saveProduct(@ModelAttribute ("product") ProductDTO productDTO, Model model,@Param("keyword")String keyword) throws Exception {
 		productService.SaveProduct(productDTO);
 		model.addAttribute("products", productService.getProductList(keyword));
+		model.addAttribute("categories", productService.getCategoryList());
 		return "product_list";
 	}
 	@GetMapping("/product_list")
-	public String showProducts( Model model ,@Param("keyword")String keyword) {
+	public String showProducts( Model model ,@Param("keyword")String keyword,@Param("cat_id")Long id) {
 		model.addAttribute("products", productService.getProductList(keyword));
+		model.addAttribute("productss",productService.getProductListByCategory(id));
+		model.addAttribute("categories", productService.getCategoryList());
 		return "product_list";
 	}
 	
 	@GetMapping("/product_list/{keyword}")
 	public String showProductList(Model model,@Param("keyword") String keyword) {
+		model.addAttribute("categories", productService.getCategoryList());
 		List<Product> productList = productService.getProductList(keyword);
 		model.addAttribute("products", productList);
 		model.addAttribute("keyword",keyword);
 		return "product_list";
 	}
+	@GetMapping("/product_list/{category}")
+	public String showProductListByCategory(Model model,@RequestParam("cat_id") Long id) {
+		model.addAttribute("categories", productService.getCategoryList());
+		List<Product> productList = productService.getProductListByCategory(id);
+		model.addAttribute("productss", productList);
+		model.addAttribute("cat_id",id);
+		return "product_list";
+	}
+	
 	/*@GetMapping("/register")
 	public String create_register(Model model) {
 		return "register";

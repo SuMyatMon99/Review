@@ -121,6 +121,14 @@ public class ProductServiceImpl implements ProductService {
 
 
 
+	@Override
+	public List<Product> getProductListByCategory(Long category_id) {
+		// TODO Auto-generated method stub
+		return productRepository.getProductListByCategory(category_id);
+	}
+
+
+
 
 	
 }
