@@ -1,16 +1,23 @@
 
 package com.ucs.edu.Review.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ucs.edu.Review.service.CategoryService;
+
 @Controller
 public class DefaultController {
 
+	@Autowired 
+	private CategoryService categoryService;
+	
 	@GetMapping("/")
-	public String home1() {
+	public String home1(Model model) {
+		model.addAttribute("category",categoryService.getCategoryList());
 		return "index";
 	}
 

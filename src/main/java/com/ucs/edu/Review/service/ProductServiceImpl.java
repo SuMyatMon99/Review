@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ucs.edu.Review.dto.ProductDTO;
 import com.ucs.edu.Review.model.Brand;
 import com.ucs.edu.Review.model.Category;
+import com.ucs.edu.Review.model.LoginUser;
 import com.ucs.edu.Review.model.Product;
 import com.ucs.edu.Review.model.Shop;
 import com.ucs.edu.Review.repository.BrandRepository;
 import com.ucs.edu.Review.repository.CategoryRepository;
 import com.ucs.edu.Review.repository.ProductRepository;
 import com.ucs.edu.Review.repository.ShopRepository;
+import com.ucs.edu.Review.repository.UserRepository;
 
 @Service
 @Transactional
@@ -32,6 +35,9 @@ public class ProductServiceImpl implements ProductService {
 	private CategoryRepository categoryRepository;
 	
 	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
 	private BrandRepository brandRepository;
 	
 	@Autowired
@@ -39,6 +45,7 @@ public class ProductServiceImpl implements ProductService {
 	public String UPLOAD_DIRECTORY="/images/";
 	@Override
 	public void SaveProduct(ProductDTO productDTO) throws Exception {
+		Float rate = (float) 5.0000;
 		if(productDTO!=null) {
 		Category cat=categoryRepository.findById(productDTO.getCategory_id()).get();
 		Brand brand=brandRepository.findById(productDTO.getBrand_id()).get();
@@ -48,6 +55,7 @@ public class ProductServiceImpl implements ProductService {
 		String filename = productDTO.getFile().getOriginalFilename();
 		product.setProduct_name(productDTO.getProduct_name());
 		product.setDescr(productDTO.getDescr());
+		product.setTotalRating(rate);
 		System.out.println(path+" "+filename);  
 		try {
 			byte[] bytes = productDTO.getFile().getBytes();
@@ -80,8 +88,12 @@ public class ProductServiceImpl implements ProductService {
 
 
 	@Override
-	public List<Product> getProductList() {
+	public List<Product> getProductList(String name) {
+		if(name!=null) {
+		return productRepository.search(name);
+		}else {
 		return productRepository.findAll();
+		}
 	}
 
 
@@ -99,6 +111,14 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return shopRepository.findAll();
 	}
+
+
+
+	@Override
+	public LoginUser getLoginUser(Long id) {
+		return userRepository.findById(id).get();
+	}
+
 
 
 

@@ -12,6 +12,12 @@
 <%@ include file="bootstrap.jsp" %>
 <div class="container">
 <h2 style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;">Add Product</h2>
+
+<div class="row">
+<div class="col-4">
+	<img id="output" width="400" style="margin-top:200px;"/>	
+</div>
+<div class="col-6">
 <form:form action="save_product" method="POST" enctype="multipart/form-data" modelAttribute="product" style="width:300px; color:rgba(246, 75, 8, 0.876);font-style: oblique;">
 <div class="form-group">
 	<label style="font-style: oblique; font-size: 20px;">Name:</label>
@@ -31,7 +37,7 @@
 </div>
 <div class="form-group">
 	<label style="font-style: oblique; font-size: 20px;">Review :</label>
-	<form:input path="descr" class="form-control" placeholder="Write your review...." width="200" style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"/>
+	<form:textarea path="descr" rows="4" class="form-control" placeholder="Write your review...." width="200" style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"/>
 </div>
 <div class="form-group">
 <label style="font-style: oblique; font-size: 20px;">Shop:</label>
@@ -51,10 +57,18 @@
 </div>
 <div class="from-group">
 	<label style="font-style: oblique; font-size: 20px;">File to upload</label>
-	<form:input path="file" type="file" name="file" />
+	<form:input path="file" type="file" name="file" id="file" onchange="loadFile(event)"/>
 </div>
 <button type="submit" class="btn btn-secondary">Save</button>
 </form:form>
 </div>
+</div>
+</div>
+<script>
+var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
 </body>
 </html>

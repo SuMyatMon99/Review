@@ -25,6 +25,10 @@ public class LoginUser implements Serializable{
 	@OneToOne
 	@JoinColumn(name="roleId")
 	private UserRole userRole=new UserRole();
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	public int getId() {
 		return id;
 	}
