@@ -8,7 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ucs.edu.Review.dto.ProductDTO;
@@ -63,6 +66,13 @@ public class ProductController {
 		model.addAttribute("productss", productList);
 		model.addAttribute("cat_id",id);
 		return "product_list";
+	}
+	
+	@RequestMapping("/product/{id}")
+	public String productDetails(@PathVariable("id") Long id,Model model) {
+		System.out.println(id);
+		model.addAttribute("product", productService.getProductById(id));
+		return "product_detail";
 	}
 	
 	/*@GetMapping("/register")

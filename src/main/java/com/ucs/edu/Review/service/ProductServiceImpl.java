@@ -129,6 +129,13 @@ public class ProductServiceImpl implements ProductService {
 
 
 
+	@Override
+	public Product getProductById(Long id) {
+		return productRepository.findById(id).get();
+	}
+
+
+
 
 	
 }

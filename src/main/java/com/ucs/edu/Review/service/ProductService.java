@@ -18,5 +18,7 @@ public interface ProductService {
 	public LoginUser getLoginUser(Long id);
 	
 	public List<Product> getProductListByCategory(Long category_id);
+	
+	public Product getProductById(Long id);
 
 }

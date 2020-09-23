@@ -105,9 +105,9 @@ rating
 										</div>
 
 									</div>
-									<a href="#!" class="orange-text d-flex flex-row-reverse p-2">
-      <h5 class="waves-effect waves-light">Read more >></h5>
-    </a>
+									<a href="/product/${prod.product_id }" class="orange-text d-flex flex-row-reverse p-2">
+						      	<h5 class="waves-effect waves-light">Read more >></h5>
+    								</a>
 								</div>
 							</div>
 							

@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         		"/profile","/header","/footer",
         		"/create_shop","/shop_list","/save_shop","/cate",
         		"/create_brand","/brand_list","/save_brand",
-        		"/create_product","/product_list","/save_product"
+        		"/create_product","/product_list","/save_product","/product_detail","/product/**"
         		,"/category_list","/save_category","/create_category"
         		,"/blog-details.htm","/faq.htm","/blog.htm",
         		"/create_location","/save_location","/location_list",
