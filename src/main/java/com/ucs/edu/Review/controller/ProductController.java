@@ -37,24 +37,24 @@ public class ProductController {
 		return "create_product";
 	}
 	@PostMapping("/save_product")
-	public String saveProduct(@ModelAttribute ("product") ProductDTO productDTO, Model model,@Param("keyword")String keyword) throws Exception {
+	public String saveProduct(@ModelAttribute ("product") ProductDTO productDTO, Model model,@Param("keyword")String keyword,@Param("cat_id")Long id) throws Exception {
 		productService.SaveProduct(productDTO);
-		model.addAttribute("products", productService.getProductList(keyword));
+		model.addAttribute("products", productService.getProductList(keyword,id));
 		model.addAttribute("categories", productService.getCategoryList());
 		return "product_list";
 	}
 	@GetMapping("/product_list")
 	public String showProducts( Model model ,@Param("keyword")String keyword,@Param("cat_id")Long id) {
-		model.addAttribute("products", productService.getProductList(keyword));
+		model.addAttribute("products", productService.getProductList(keyword,id));
 		model.addAttribute("productss",productService.getProductListByCategory(id));
 		model.addAttribute("categories", productService.getCategoryList());
 		return "product_list";
 	}
 	
-	@GetMapping("/product_list/{keyword}")
-	public String showProductList(Model model,@Param("keyword") String keyword) {
+	@GetMapping("/product_list/{cat_id}/{keyword}")
+	public String showProductList(Model model,@Param("keyword") String keyword,@Param("cat_id")Long id) {
 		model.addAttribute("categories", productService.getCategoryList());
-		List<Product> productList = productService.getProductList(keyword);
+		List<Product> productList = productService.getProductList(keyword,id);
 		model.addAttribute("products", productList);
 		model.addAttribute("keyword",keyword);
 		return "product_list";

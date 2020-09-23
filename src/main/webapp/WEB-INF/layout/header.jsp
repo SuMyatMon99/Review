@@ -52,18 +52,16 @@
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
                          <form th:action="@{/}">
-                        <select th:name="cat_id"  class="category-btn form-select">
+                        <select name="cat_id"  class="category-btn form-select">
                         <c:forEach items="${categories}" var="cat" varStatus="row">
 							<option value="${ cat.cat_id}">${cat.cat_name }</option>
                            </c:forEach>
                         </select>
-                        </form>
                             <div class="input-group">
-                            <form th:action="@{/}">
     							<input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
    								<button type="submit"><i class="ti-search"></i></button>
-							</form> 
                             </div>
+                            </form>
                         </div>
                     </div>
                     <div class="col-lg-3 text-right col-md-3">

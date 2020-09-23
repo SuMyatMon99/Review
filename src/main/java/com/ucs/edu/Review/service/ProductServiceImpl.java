@@ -88,9 +88,10 @@ public class ProductServiceImpl implements ProductService {
 
 
 	@Override
-	public List<Product> getProductList(String name) {
+	public List<Product> getProductList(String name,Long id) {
 		if(name!=null) {
-		return productRepository.search(name);
+		return productRepository.search(name,id);
+		
 		}else {
 		return productRepository.findAll();
 		}

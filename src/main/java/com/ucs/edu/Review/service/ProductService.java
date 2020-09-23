@@ -11,7 +11,7 @@ import com.ucs.edu.Review.model.Shop;
 
 public interface ProductService {
 	public void SaveProduct(ProductDTO productDTO) throws Exception;
-	public List<Product> getProductList(String name);
+	public List<Product> getProductList(String name,Long id);
 	public List<Brand> getBrandList();
 	public List<Category> getCategoryList();
 	public List<Shop> getShopList();
