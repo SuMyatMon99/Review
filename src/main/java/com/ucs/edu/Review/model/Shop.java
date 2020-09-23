@@ -7,9 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 @Entity
 public class Shop implements Serializable{
 
@@ -21,18 +19,54 @@ public class Shop implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long shop_id;
 	private String shop_name;
-	@OneToOne
-	@JoinColumn (name="location_id")
-	private Location location;
+	private String address;
+	private Float lat;
+	private Float lng;
+	private String type;
+	
+	@OneToMany(mappedBy = "shop")
+	private Set<Product> productList;
+	
 	public Shop() {
 		super();
 	}
-	public Shop(Long shop_id, String shop_name, Location location) {
-		super();
-		this.shop_id = shop_id;
-		this.shop_name = shop_name;
-		this.location = location;
+	
+	public String getAddress() {
+		return address;
 	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Float getLat() {
+		return lat;
+	}
+
+	public void setLat(Float lat) {
+		this.lat = lat;
+	}
+
+	public Float getLng() {
+		return lng;
+	}
+
+	public void setLng(Float lng) {
+		this.lng = lng;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public Long getShop_id() {
 		return shop_id;
 	}
@@ -45,21 +79,9 @@ public class Shop implements Serializable{
 	public void setShop_name(String shop_name) {
 		this.shop_name = shop_name;
 	}
-	public Location getLocation() {
-		return location;
-	}
-	public void setLocation(Location location) {
-		this.location = location;
-	}
-	@OneToMany(mappedBy = "shop")
-	private Set<Product> productList;
-	public Shop(Long shop_id, String shop_name, Location location, Set<Product> productList) {
-		super();
-		this.shop_id = shop_id;
-		this.shop_name = shop_name;
-		this.location = location;
-		this.productList = productList;
-	}
+	
+	
+	
 	public Set<Product> getProductList() {
 		return productList;
 	}

@@ -18,12 +18,20 @@
 	<form:input path="shop_name" class="form-control" placeholder="Name..." style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"/>
 </div>
 <div class="form-group">
-<label style="font-style: oblique; font-size: 20px;">Location:</label>
-<form:select path="location_id" class="custom-select">
-	<c:forEach items="${locations }" var="loc">
-	<form:option value="${loc.location_id }">${loc.address }</form:option>
-	</c:forEach>
-</form:select>
+		<label style="font-style: oblique; font-size: 20px;">Address:</label>
+		<form:input path="address" class="form-control" placeholder="Address..." style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"/>
+</div>
+<div class="form-group">
+		<label style="font-style: oblique; font-size: 20px;">Latitudes:</label>
+		<form:input path="lat" class="form-control" placeholder="Latitudes..." style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"/>
+</div>
+<div class="form-group">
+		<label style="font-style: oblique; font-size: 20px;">Longitudes:</label>
+		<form:input path="lng" class="form-control" placeholder="Longitudes..." style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"/>
+</div>
+<div class="form-group">
+		<label style="font-style: oblique; font-size: 20px;">Type:</label>
+		<form:input path="type" class="form-control" placeholder="Type..." style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"/>
 </div>
 <button type="submit" class="btn btn-secondary">Save</button>
 </form:form>

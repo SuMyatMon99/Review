@@ -83,7 +83,7 @@ rating
 	<div class="container-fluid">
 				<h2>Recent Reviews</h2>
 
-			<div class="container">
+			<div class="container" style="min-height:300px;">
 			<div class="row">
 			<div class="col-9">
 				<div class="row">

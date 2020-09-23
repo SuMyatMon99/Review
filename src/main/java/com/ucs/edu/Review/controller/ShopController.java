@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ucs.edu.Review.dto.ShopDTO;
-import com.ucs.edu.Review.service.LocationService;
 import com.ucs.edu.Review.service.ShopService;
 
 @Controller
 public class ShopController {
 	@Autowired
 	private ShopService shopService;
+	
+
 	@GetMapping("/create_shop")
 	public String createShop(Model model) {
 		model.addAttribute("shop", new ShopDTO());
-		model.addAttribute("locations", shopService.getLocationList());
 		return "create_shop";
 	}
 	@PostMapping("/save_shop")
@@ -29,7 +29,7 @@ public class ShopController {
 	}
 	@GetMapping("/shop_list")
 	public String showShop(Model model) {
-		model.addAttribute("shops", shopService.getLocationList());
+		model.addAttribute("shops", shopService.getShopList());
 		return "shop_list";
 	}
 	

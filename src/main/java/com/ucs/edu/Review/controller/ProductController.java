@@ -75,6 +75,14 @@ public class ProductController {
 		return "product_detail";
 	}
 	
+	@RequestMapping("/productsbycategory/{cat_id}")
+	public String showProductListByCategory(@PathVariable("cat_id") Long id,Model model) {
+		System.out.println(id);
+		model.addAttribute("categories", productService.getCategoryList());
+		model.addAttribute("products", productService.getProductListByCategory(id));
+		return "product_list";
+	}
+	
 	/*@GetMapping("/register")
 	public String create_register(Model model) {
 		return "register";

@@ -132,7 +132,7 @@
                         <span>All departments</span>
                         <ul class="depart-hover">
                        <c:forEach items="${categories}" var="cat" varStatus="row">
-                            <li th:vlaue="${cat.cat_id }"><a href="@{/}">${cat.cat_name }</a></li>
+                            <li th:vlaue="${cat.cat_id }"><a href="/productsbycategory/${cat.cat_id }">${cat.cat_name }</a></li>
                            </c:forEach>
                         </ul>
                     </div>
