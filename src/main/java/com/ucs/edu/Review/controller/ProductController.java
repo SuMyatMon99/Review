@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ucs.edu.Review.dto.ProductDTO;
@@ -37,24 +36,23 @@ public class ProductController {
 		return "create_product";
 	}
 	@PostMapping("/save_product")
-	public String saveProduct(@ModelAttribute ("product") ProductDTO productDTO, Model model,@Param("keyword")String keyword,@Param("cat_id")Long id) throws Exception {
+	public String saveProduct(@ModelAttribute ("product") ProductDTO productDTO, Model model,@Param("keyword")String keyword) throws Exception {
 		productService.SaveProduct(productDTO);
-		model.addAttribute("products", productService.getProductList(keyword,id));
+		model.addAttribute("products", productService.getProductList(keyword));
 		model.addAttribute("categories", productService.getCategoryList());
 		return "product_list";
 	}
 	@GetMapping("/product_list")
-	public String showProducts( Model model ,@Param("keyword")String keyword,@Param("cat_id")Long id) {
-		model.addAttribute("products", productService.getProductList(keyword,id));
-		model.addAttribute("productss",productService.getProductListByCategory(id));
+	public String showProducts( Model model ,@Param("keyword")String keyword) {
+		model.addAttribute("products", productService.getProductList(keyword));
 		model.addAttribute("categories", productService.getCategoryList());
 		return "product_list";
 	}
 	
 	@GetMapping("/product_list/{cat_id}/{keyword}")
-	public String showProductList(Model model,@Param("keyword") String keyword,@Param("cat_id")Long id) {
+	public String showProductList(Model model,@Param("keyword") String keyword) {
 		model.addAttribute("categories", productService.getCategoryList());
-		List<Product> productList = productService.getProductList(keyword,id);
+		List<Product> productList = productService.getProductList(keyword);
 		model.addAttribute("products", productList);
 		model.addAttribute("keyword",keyword);
 		return "product_list";

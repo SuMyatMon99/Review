@@ -81,6 +81,29 @@ rating
 <body>
 
 	<div class="container-fluid">
+	<div class="container">
+            <div class="inner-header">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2">
+                        
+                        </div>
+                    <div class="col-lg-7 col-md-7">
+                        <div class="advanced-search">
+                         <form th:action="@{/}">
+                        
+                            <div class="input-group">
+    							<input type="text" name="keyword" id="keyword" th:value="${keyword}" required />
+   								<button type="submit"><i class="ti-search"></i></button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 text-right col-md-3">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
 				<h2>Recent Reviews</h2>
 
 			<div class="container" style="min-height:300px;">
