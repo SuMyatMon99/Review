@@ -10,6 +10,8 @@
 <meta charset="ISO-8859-1">
 <title>Product List</title>
 <style>
+
+
 #card-footer {
 	width: 100%;
 	margin-bottom: 0px;
@@ -79,17 +81,39 @@ rating
 <body>
 
 	<div class="container-fluid">
-			<div class="text-center">
-				<h1>Recent Reviews</h1>
-			</div>
-			<div class="container">
+	<div class="container">
+            <div class="inner-header">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2">
+                        
+                        </div>
+                    <div class="col-lg-7 col-md-7">
+                        <div class="advanced-search">
+                         <form th:action="@{/}">
+                        
+                            <div class="input-group">
+    							<input type="text" name="keyword" id="keyword" th:value="${keyword}" required />
+   								<button type="submit"><i class="ti-search"></i></button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 text-right col-md-3">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+				<h2>Recent Reviews</h2>
+
+			<div class="container" style="min-height:300px;">
 			<div class="row">
 			<div class="col-9">
 				<div class="row">
 					<c:forEach items="${products}" var="prod" varStatus="row">
-						<div class="card m-3 col-5" style="max-height: 300px;">
+						<div class="card m-2 col-5" style="max-height: 300px;">
 							<div class="row no-gutters">
-								<div class="col-md-4 mt-5">
+								<div class="col-md-4 mt-2">
 									<img src="/images/${prod.photoPath }" class="card-img"
 										alt="...">
 								</div>
@@ -98,41 +122,34 @@ rating
 										<div class="row">
 											<h3 class="card-title">${prod.product_name }</h3>
 											<span class="card-text"
-												style="max-height: 150px; overflow: hidden; margin-top: 20px; margin-bottom: 20px;">${prod.descr }
+												style="max-height: 50px; overflow: hidden; margin-top: 20px; margin-bottom: 20px;">${prod.descr }
 											</span> <strong class="card-text">${prod.shop.shop_name}</strong>
+
 										</div>
 
 									</div>
+									<a href="/product/${prod.product_id }" class="orange-text d-flex flex-row-reverse p-2">
+						      	<h5 class="waves-effect waves-light">Read more >></h5>
+    								</a>
 								</div>
 							</div>
+							
 						</div>
 					</c:forEach>
 				</div>
 			</div>
-			<div class="col-2">
+			<div class="col-3">
 					<c:forEach items="${products}" var="prod" varStatus="row">
-						<div class="card col-12" style="max-height: 200px; overflow:hidden;">
-							<div class="row no-gutters">
-								<div class="col-md-6 mt-2">
-								
-									<img src="/images/${prod.photoPath }" class="card-img"
-										alt="...">
-										</div>
-										<div class="col-md-6 mt-2">
-										<strong class="card-title">${prod.product_name }</strong>
-								</div>
-								<div class="col-md-12">
-									<div class="card-body">					
-											<span class="card-text"
-												style="max-height: 150px; overflow: hidden; margin-top: 20px; margin-bottom: 20px;">${prod.descr }
-											</span><br/> 
-											<strong class="card-text">${prod.shop.shop_name}</strong>
-											<br/><br/><a href="#" class="btn btn-light">More>></a>
+						<div class="card" style="max-height:200px; margin:10px;">
+									<img src="/images/${prod.photoPath }" class="card-img-top" 
+										alt="..." style="max-height:150px; max-weight:auto;">
 										
+									<div class="card-body">		
+											<a href="#" class="card-title">
+											${prod.product_name }
+											</a> 
 									</div>
 								</div>
-							</div>
-						</div>
 
 					</c:forEach>
 					</div>

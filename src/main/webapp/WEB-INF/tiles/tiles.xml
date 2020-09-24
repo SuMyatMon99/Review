@@ -17,6 +17,9 @@
         <put-attribute name="body" value="/WEB-INF/index.jsp" />
     </definition>
     
+    <definition name="product_detail" extends="layout.basic">
+    	<put-attribute name="body" value="/WEB-INF/product_detail.jsp" />
+    </definition>
     
     <definition name="category_list" extends="layout.basic">
     	<put-attribute name="body" value="/WEB-INF/category_list.jsp" />

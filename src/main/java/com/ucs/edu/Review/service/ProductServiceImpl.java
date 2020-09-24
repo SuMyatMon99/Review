@@ -51,6 +51,7 @@ public class ProductServiceImpl implements ProductService {
 		Brand brand=brandRepository.findById(productDTO.getBrand_id()).get();
 		Shop shop = shopRepository.findById(productDTO.getShop_id()).get();
 		Product product = new Product();
+		
 		String path =serveletContext.getRealPath(UPLOAD_DIRECTORY);
 		String filename = productDTO.getFile().getOriginalFilename();
 		product.setProduct_name(productDTO.getProduct_name());
@@ -91,6 +92,7 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> getProductList(String name) {
 		if(name!=null) {
 		return productRepository.search(name);
+		
 		}else {
 		return productRepository.findAll();
 		}
@@ -117,6 +119,21 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public LoginUser getLoginUser(Long id) {
 		return userRepository.findById(id).get();
+	}
+
+
+
+	@Override
+	public List<Product> getProductListByCategory(Long category_id) {
+		// TODO Auto-generated method stub
+		return productRepository.getProductListByCategory(category_id);
+	}
+
+
+
+	@Override
+	public Product getProductById(Long id) {
+		return productRepository.findById(id).get();
 	}
 
 

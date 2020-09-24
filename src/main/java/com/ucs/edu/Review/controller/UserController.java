@@ -16,27 +16,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ucs.edu.Review.dto.LoginUserDTO;
-import com.ucs.edu.Review.service.UserInfoService;
+import com.ucs.edu.Review.service.IUserService;
+import com.ucs.edu.Review.service.SecurityService;
 
 @Controller
 public class UserController {
 
-	@Autowired
-	UserInfoService userInfoService;
-	
+	/*
+	 * @Autowired IUserService userInfoService;
+	 * 
+	 * @Autowired SecurityService securityService;
+	 */
 	@RequestMapping(value="/register.htm",method=RequestMethod.GET)
 	public String register(Model model){
 		model.addAttribute("userDTO", new LoginUserDTO());
-		model.addAttribute("roleList",userInfoService.getUserRoles());
 		return "register";
 	}
-	@RequestMapping(value="/register.htm",method=RequestMethod.POST)
-	public String postRegister(@ModelAttribute(value="userDTO")LoginUserDTO userDTO ){
-		userInfoService.saveUser(userDTO);
-		return "redirect:/login.htm";
-	}
-	@RequestMapping(value="/login.htm")
-	public String login(Model model){
+
+	/*
+	 * @RequestMapping(value="/register.htm",method=RequestMethod.POST) public
+	 * String postRegister(@ModelAttribute(value="userDTO")LoginUserDTO userDTO ){
+	 * userInfoService.saveUser(userDTO);
+	 * securityService.autoLogin(userDTO.getUserName(), userDTO.getUserName());
+	 * return "redirect:/product_list.htm"; }
+	 */
+	@RequestMapping(value="/login")
+	public String login(Model model,String error,String logout){
+		 if (error != null)
+	            model.addAttribute("error", "Your username and password is invalid.");
+
+	        if (logout != null)
+	            model.addAttribute("message", "You have been logged out successfully.");
+	        
 		return "login";
 	}
 	 @RequestMapping(value="/logout.htm", method=RequestMethod.GET)  

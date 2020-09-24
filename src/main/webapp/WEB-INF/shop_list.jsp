@@ -16,7 +16,10 @@
 		<tr>
 			<th>No</th>
 			<th>Name</th>
-			<th>Location</th>
+			<th>Address</th>
+			<th>Lat</th>
+			<th>Lng</th>
+			<th>Type</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -24,7 +27,10 @@
 			<tr>
 				<td>${row.count }</td>
 				<td>${shop.shop_name }</td>
-				<td>${shop.location.address }</td>
+				<td>${shop.address }</td>
+				<td>${shop.lat }</td>
+				<td>${shop.lng }</td>
+				<td>${shop.type }</td>
 			</tr>
 		</c:forEach>
 	</tbody>

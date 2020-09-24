@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.ucs.edu.Review.error.MyAccessDeniedHandler;
-import com.ucs.edu.Review.service.UserService;
+import com.ucs.edu.Review.service.UserDetailsServiceImpl;
 
 
 @Configuration
@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	MyAccessDeniedHandler accessDeniedHandler;
 
 	@Autowired
-	UserService userService;
+	UserDetailsServiceImpl userService;
 
 	
 
@@ -41,20 +41,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
         .antMatchers("/", "/public/**","/resources/**","/images/**","/products/**",
         		"/profile","/header","/footer",
-        		"/create_shop","/shop_list","/save_shop","/product_list/add_rate","/product_list/save_rate",
+        		"/create_shop","/shop_list","/save_shop","/cate",
         		"/create_brand","/brand_list","/save_brand",
-        		"/create_product","/product_list","/save_product"
+        		"/create_product","/product_list","/save_product","/product_detail",
+        		"/product/**","/productsbycategory/**"
         		,"/category_list","/save_category","/create_category"
         		,"/blog-details.htm","/faq.htm","/blog.htm",
-        		"/create_location","/save_location","/location_list",
-        		"/login.htm","/register.htm").permitAll()
+        		"/create_location","/save_location","/location_list","/register.htm").permitAll()
             .antMatchers("/users/**").hasAuthority("ADMIN")
             .anyRequest().fullyAuthenticated()
             .and()
         .formLogin()
-        .loginProcessingUrl("login.htm")
-        .loginPage("/login.htm")
-        	.failureUrl("/login.htm?error=1")
+        .loginProcessingUrl("login")
+        .loginPage("/login")
+        	.failureUrl("/login?error=1")
         	.defaultSuccessUrl("/product_list")
             .permitAll()
             .and()
@@ -71,7 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+		//auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
 
 	}
 }
