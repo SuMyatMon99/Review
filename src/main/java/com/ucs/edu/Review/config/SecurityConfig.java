@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.ucs.edu.Review.error.MyAccessDeniedHandler;
-import com.ucs.edu.Review.service.UserService;
+import com.ucs.edu.Review.service.UserDetailsServiceImpl;
 
 
 @Configuration
@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	MyAccessDeniedHandler accessDeniedHandler;
 
 	@Autowired
-	UserService userService;
+	UserDetailsServiceImpl userService;
 
 	
 
@@ -47,15 +47,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         		"/product/**","/productsbycategory/**"
         		,"/category_list","/save_category","/create_category"
         		,"/blog-details.htm","/faq.htm","/blog.htm",
-        		"/create_location","/save_location","/location_list",
-        		"/login.htm","/register.htm").permitAll()
+        		"/create_location","/save_location","/location_list","/register.htm").permitAll()
             .antMatchers("/users/**").hasAuthority("ADMIN")
             .anyRequest().fullyAuthenticated()
             .and()
         .formLogin()
-        .loginProcessingUrl("login.htm")
-        .loginPage("/login.htm")
-        	.failureUrl("/login.htm?error=1")
+        .loginProcessingUrl("login")
+        .loginPage("/login")
+        	.failureUrl("/login?error=1")
         	.defaultSuccessUrl("/product_list")
             .permitAll()
             .and()
@@ -72,7 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+		//auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
 
 	}
 }

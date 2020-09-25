@@ -1,48 +1,46 @@
 package com.ucs.edu.Review.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 @Entity
 public class UserRole implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-	private String roleName;
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="role_priviliges",joinColumns={@JoinColumn(name="RoleId",nullable=false)},inverseJoinColumns={@JoinColumn(name="PriviligesId",nullable=false)})
-	private List<Privileges> privilegesList=new ArrayList<Privileges>();
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getRoleName() {
-		return roleName;
-	}
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
-	public List<Privileges> getPrivilegesList() {
-		return privilegesList;
-	}
-	public void setPrivilegesList(List<Privileges> privilegesList) {
-		this.privilegesList = privilegesList;
-	}
-	
+	 @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long id;
+
+	    private String name;
+
+	    @ManyToMany(mappedBy = "roles")
+	    private Set<LoginUser> users;
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public Set<LoginUser> getUsers() {
+			return users;
+		}
+
+		public void setUsers(Set<LoginUser> users) {
+			this.users = users;
+		}
+	    
 }
