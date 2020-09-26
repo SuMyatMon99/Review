@@ -40,8 +40,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
-                   <form:form method="post" action="${pageContext.request.contextPath}/register.htm" modelAttribute="userDTO">
-User Name:<form:input path="username" type="text"/><br>
+                   <form:form method="post" action="/register.htm" modelAttribute="userDTO">
+User Name:<form:input path="userName" type="text"/><br>
 Password: <form:password path="password" /><br>
 Role :	<form:select path="roleId">
 <form:options items="${roleList}" itemLabel="roleName" itemValue="id"/>
@@ -49,7 +49,7 @@ Role :	<form:select path="roleId">
 <input type="submit" value="Submit" />
 </form:form>
                 <div class="switch-login">
-                            <a href="/user/login.htm" class="or-login">Or Login</a>
+                            <a href="/login" class="or-login">Or Login</a>
                         </div>
                 </div>
             </div>

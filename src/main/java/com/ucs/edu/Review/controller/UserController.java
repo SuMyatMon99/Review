@@ -22,24 +22,25 @@ import com.ucs.edu.Review.service.SecurityService;
 @Controller
 public class UserController {
 
-	/*
-	 * @Autowired IUserService userInfoService;
-	 * 
-	 * @Autowired SecurityService securityService;
-	 */
+	@Autowired
+	IUserService userInfoService;
+
+	/*@Autowired
+	SecurityService securityService;
+	*/
 	@RequestMapping(value="/register.htm",method=RequestMethod.GET)
 	public String register(Model model){
 		model.addAttribute("userDTO", new LoginUserDTO());
 		return "register";
 	}
 
-	/*
-	 * @RequestMapping(value="/register.htm",method=RequestMethod.POST) public
-	 * String postRegister(@ModelAttribute(value="userDTO")LoginUserDTO userDTO ){
-	 * userInfoService.saveUser(userDTO);
-	 * securityService.autoLogin(userDTO.getUserName(), userDTO.getUserName());
-	 * return "redirect:/product_list.htm"; }
-	 */
+	@RequestMapping(value = "/register.htm", method = RequestMethod.POST)
+	public String postRegister(@ModelAttribute(value = "userDTO") LoginUserDTO userDTO) {
+		userInfoService.saveUser(userDTO);
+		//securityService.autoLogin(userDTO.getUserName(), userDTO.getUserName());
+		return "redirect:/login.htm";
+	}
+
 	@RequestMapping(value="/login")
 	public String login(Model model,String error,String logout){
 		 if (error != null)
