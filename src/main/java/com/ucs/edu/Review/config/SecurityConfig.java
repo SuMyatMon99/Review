@@ -27,40 +27,45 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	
 
-	@Bean
+	/*@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-
+	*/
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
 		http
 		.csrf().disable()
         .authorizeRequests()
-        .antMatchers("/", "/public/**","/resources/**","/images/**","/products/**",
-        		"/profile","/header","/footer",
-        		"/create_shop","/shop_list","/save_shop","/cate",
-        		"/create_brand","/brand_list","/save_brand",
-        		"/create_product","/product_list","/save_product","/product_detail",
-        		"/product/**","/productsbycategory/**"
-        		,"/category_list","/save_category","/create_category"
-        		,"/blog-details.htm","/faq.htm","/blog.htm",
-        		"/create_location","/save_location","/location_list","/register.htm").permitAll()
-            .antMatchers("/users/**").hasAuthority("ADMIN")
-            .anyRequest().fullyAuthenticated()
+				.antMatchers("/",
+						
+						"/public/**", "/resources/**",
+						"/images/**", 
+						/*
+										 * "/products/**", "/profile","/header","/footer",
+										 * "/create_shop","/shop_list","/save_shop","/cate",
+										 * "/create_brand","/brand_list","/save_brand",
+										 * "/create_product","/product_list","/save_product","/product_detail",
+										 * "/product/**","/productsbycategory/**"
+										 * ,"/category_list","/save_category","/create_category"
+										 * ,"/blog-details.htm","/faq.htm","/blog.htm",
+										 * "/create_location","/save_location","/location_list",
+										 */
+						"/register.htm").permitAll()
+            .antMatchers("/**").fullyAuthenticated()
             .and()
         .formLogin()
-        .loginProcessingUrl("login")
         .loginPage("/login")
+        .loginProcessingUrl("/login")
+        
         	.failureUrl("/login?error=1")
         	.defaultSuccessUrl("/product_list")
             .permitAll()
             .and()
         .logout()
          .logoutUrl("/logout.htm")
-            .logoutSuccessUrl("/login.htm")
+            .logoutSuccessUrl("/login")
             .permitAll();	
 	}
 
@@ -71,7 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		//auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
 
 	}
 }

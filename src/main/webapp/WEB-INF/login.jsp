@@ -27,10 +27,10 @@
         </p>  
     </c:if> 
                         <h2>Login</h2>
-                        <form action="${pageContext.request.contextPath}/login" method="POST">
+                        <form action="login" method="POST">
                             <div class="group-input">
                                 <label for="username">Username or email address *</label>
-                                <input type="text" id="username" name="userName">
+                                <input type="text" id="username" name="username">
                             </div>
                             <div class="group-input">
                                 <label for="pass">Password *</label>

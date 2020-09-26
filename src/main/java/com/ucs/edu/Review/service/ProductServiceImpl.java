@@ -65,7 +65,6 @@ public class ProductServiceImpl implements ProductService {
 				out.write(bytes);
 				out.flush();
 				out.close();
-		
 			
 		}catch(Exception e){
 			throw e;
