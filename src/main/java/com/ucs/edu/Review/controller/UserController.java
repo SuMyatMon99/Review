@@ -1,6 +1,8 @@
 
 package com.ucs.edu.Review.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,14 +12,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ucs.edu.Review.dto.LoginUserDTO;
 import com.ucs.edu.Review.service.IUserService;
-import com.ucs.edu.Review.service.SecurityService;
 
 @Controller
 public class UserController {
@@ -60,8 +61,16 @@ public class UserController {
 	         return "redirect:/login.htm";  
 	     } 
 	 
-	 @GetMapping("/profile")
-	 public String profile(Model model) {
+	 @RequestMapping("/profile")
+	 public String profile(Principal principal,Model model) {
+		 model.addAttribute("username",principal.getName());
 		 return "profile";
 	 }
+	 
+	@RequestMapping(value="/username",method = RequestMethod.GET)
+	@ResponseBody
+	public String currenntUserName(Principal principal) {
+		
+		return principal.getName();
+	}
 }

@@ -1,13 +1,13 @@
 package com.ucs.edu.Review.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 @Entity
 public class UserRole implements Serializable{
 	 @Id
@@ -16,8 +16,8 @@ public class UserRole implements Serializable{
 
 	    private String name;
 
-	    @ManyToMany(mappedBy = "roles")
-	    private Set<LoginUser> users;
+	    @OneToMany(mappedBy = "roles")
+	    private List<LoginUser> users;
 
 		public Long getId() {
 			return id;
@@ -35,12 +35,13 @@ public class UserRole implements Serializable{
 			this.name = name;
 		}
 
-		public Set<LoginUser> getUsers() {
+		public List<LoginUser> getUsers() {
 			return users;
 		}
 
-		public void setUsers(Set<LoginUser> users) {
+		public void setUsers(List<LoginUser> users) {
 			this.users = users;
 		}
+		
 	    
 }

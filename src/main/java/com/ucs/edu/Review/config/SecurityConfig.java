@@ -27,44 +27,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	
 
-	/*@Bean
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
-	*/
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.csrf().disable()
         .authorizeRequests()
 				.antMatchers("/",
-						
 						"/public/**", "/resources/**",
-						"/images/**", 
-						/*
-										 * "/products/**", "/profile","/header","/footer",
-										 * "/create_shop","/shop_list","/save_shop","/cate",
-										 * "/create_brand","/brand_list","/save_brand",
-										 * "/create_product","/product_list","/save_product","/product_detail",
-										 * "/product/**","/productsbycategory/**"
-										 * ,"/category_list","/save_category","/create_category"
-										 * ,"/blog-details.htm","/faq.htm","/blog.htm",
-										 * "/create_location","/save_location","/location_list",
-										 */
+						"/images/**",
 						"/register.htm").permitAll()
+				.antMatchers("/author/product_list").hasAnyAuthority("ADAMIN")
+				.antMatchers("/author/product/**").hasAnyAuthority("ADAMIN")
+				.antMatchers("/create_brand").hasAuthority("ADAMIN")
+				.antMatchers("/author/**").hasAuthority("USER")
             .antMatchers("/**").fullyAuthenticated()
+            .anyRequest().authenticated()
             .and()
         .formLogin()
         .loginPage("/login")
         .loginProcessingUrl("/login")
         
         	.failureUrl("/login?error=1")
-        	.defaultSuccessUrl("/product_list")
+        	.defaultSuccessUrl("/")
             .permitAll()
             .and()
         .logout()
-         .logoutUrl("/logout.htm")
+         .logoutUrl("/logout")
             .logoutSuccessUrl("/login")
             .permitAll();	
 	}

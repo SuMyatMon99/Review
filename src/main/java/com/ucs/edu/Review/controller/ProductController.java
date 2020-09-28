@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ucs.edu.Review.dto.ProductDTO;
 import com.ucs.edu.Review.model.Product;
@@ -49,22 +49,24 @@ public class ProductController {
 		return "product_list";
 	}
 	
-	@GetMapping("/product_list/{cat_id}/{keyword}")
-	public String showProductList(Model model,@Param("keyword") String keyword) {
-		model.addAttribute("categories", productService.getCategoryList());
-		List<Product> productList = productService.getProductList(keyword);
-		model.addAttribute("products", productList);
-		model.addAttribute("keyword",keyword);
-		return "product_list";
-	}
-	@GetMapping("/product_list/{category}")
-	public String showProductListByCategory(Model model,@RequestParam("cat_id") Long id) {
+	@RequestMapping("/product_list/{cat_id}")
+	public String showProductListByCategory(Model model, @PathVariable("cat_id") Long id) {
 		model.addAttribute("categories", productService.getCategoryList());
 		List<Product> productList = productService.getProductListByCategory(id);
-		model.addAttribute("productss", productList);
-		model.addAttribute("cat_id",id);
+		model.addAttribute("products", productList);
+		model.addAttribute("cat_id", id);
 		return "product_list";
 	}
+	/*
+	 * @RequestMapping("/product_list/{cat_id}/{keyword}") public String
+	 * showProductList(Model model, @PathVariable("cat_id") Long
+	 * id, @Param("keyword") String keyword) { model.addAttribute("categories",
+	 * productService.getCategoryList()); List<Product> productList =
+	 * productService.getProductListByKeywordandCategory(id, keyword);
+	 * model.addAttribute("products", productList); model.addAttribute("cat_id",id);
+	 * model.addAttribute("keyword", keyword); return "product_list"; }
+	 */
+	
 	
 	@RequestMapping("/product/{id}")
 	public String productDetails(@PathVariable("id") Long id,Model model) {
@@ -72,15 +74,15 @@ public class ProductController {
 		model.addAttribute("product", productService.getProductById(id));
 		return "product_detail";
 	}
-	
+
 	@RequestMapping("/productsbycategory/{cat_id}")
-	public String showProductListByCategory(@PathVariable("cat_id") Long id,Model model) {
+	public String showProductListByCategory(@PathVariable("cat_id") Long id, Model model) {
 		System.out.println(id);
 		model.addAttribute("categories", productService.getCategoryList());
 		model.addAttribute("products", productService.getProductListByCategory(id));
 		return "product_list";
 	}
-	
+
 	/*@GetMapping("/register")
 	public String create_register(Model model) {
 		return "register";
@@ -100,4 +102,12 @@ public class ProductController {
 	public String showFAQ(Model model) {
 		return "faq";
 	}
+	
+	
+	@ResponseBody 
+	@RequestMapping(value = "/search/api/getSearchResult/{id}") 
+	public String getSearchResultViaAjax(@PathVariable(value = "id") Integer id) 
+	{ 
+	 return String.valueOf(id); 
+	} 
 }

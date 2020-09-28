@@ -71,16 +71,11 @@ end
 
 rating
 </style>
-<link th:rel="stylesheet"
-	th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
-<link th:rel="stylesheet"
-	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
-<link th:rel="stylesheet"
-	th:href="@{/assets/bootstrapless-star-rating/star-rating.css} " />
 </head>
 <body>
 
 	<div class="container-fluid">
+	
 	<div class="container">
             <div class="inner-header">
                 <div class="row">
@@ -88,15 +83,10 @@ rating
                         
                         </div>
                     <div class="col-lg-7 col-md-7">
-                        <div class="advanced-search">
-                         <form th:action="@{/}">
-                        
-                            <div class="input-group">
-    							<input type="text" name="keyword" id="keyword" th:value="${keyword}" required />
-   								<button type="submit"><i class="ti-search"></i></button>
-                            </div>
-                            </form>
-                        </div>
+                         <form class="form-inline my-2 my-lg-0" th:action="@{/}">
+      <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" th:value="${keyword }" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
                     </div>
                     <div class="col-lg-3 text-right col-md-3">
                         
@@ -133,7 +123,6 @@ rating
     								</a>
 								</div>
 							</div>
-							
 						</div>
 					</c:forEach>
 				</div>
@@ -161,9 +150,6 @@ rating
 				window.location = "[[@{/product_list}]]";
 			}
 		</script>
-		<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-		<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-		<script th:src="@{/assets/bootstrapless-star-rating/star-rating.min.js}"></script>
+		
 </body>
 </html>

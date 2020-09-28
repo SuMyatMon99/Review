@@ -43,9 +43,6 @@
                    <form:form method="post" action="/register.htm" modelAttribute="userDTO">
 User Name:<form:input path="userName" type="text"/><br>
 Password: <form:password path="password" /><br>
-Role :	<form:select path="roleId">
-<form:options items="${roleList}" itemLabel="roleName" itemValue="id"/>
-</form:select>
 <input type="submit" value="Submit" />
 </form:form>
                 <div class="switch-login">
