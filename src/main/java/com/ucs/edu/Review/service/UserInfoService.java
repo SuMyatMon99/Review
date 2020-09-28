@@ -1,6 +1,6 @@
 package com.ucs.edu.Review.service;
 
-import java.util.HashSet;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,12 +28,17 @@ public class UserInfoService implements IUserService {
 		LoginUser loginUser = new LoginUser();
 		loginUser.setUsername(user.getUserName());
 		loginUser.setPassword(passwordEncoder.encode(user.getPassword()));
-		loginUser.setRoles(new HashSet<>(roleRepository.findAll()));
+		loginUser.setRoles(roleRepository.findAll().get(2));
 		userRepository.save(loginUser);
 	}
 
 	@Override public LoginUser findByUsername(String name) { // TODO
 	  return userRepository.findUserByUsername(name);
 	  }
+
+	@Override
+	public Collection<LoginUser> getAllUser() {
+		return (Collection<LoginUser>) userRepository.findAll();
+	}
 
 }

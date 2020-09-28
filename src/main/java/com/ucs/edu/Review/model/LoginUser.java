@@ -1,13 +1,13 @@
 package com.ucs.edu.Review.model;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -23,8 +23,9 @@ public class LoginUser implements Serializable{
     @Transient
     private String passwordConfirm;
 
-    @ManyToMany
-    private Set<UserRole> roles;
+    @ManyToOne
+    @JoinColumn(name="roleId")
+    private UserRole roles;
 
 	public Long getId() {
 		return id;
@@ -58,13 +59,15 @@ public class LoginUser implements Serializable{
 		this.passwordConfirm = passwordConfirm;
 	}
 
-	public Set<UserRole> getRoles() {
+	public UserRole getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<UserRole> roles) {
+	public void setRoles(UserRole roles) {
 		this.roles = roles;
 	}
+
+	
     
     
 	

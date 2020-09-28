@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="http://www.thymeleaf.org" 
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-   <head>
-   <script type="text/javascript">
-   document.querySelector("#react-search-bar > div");
-   </script>
-  
-   </head>
-   <body>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
  <%@ include file="/WEB-INF/common/include.jsp"%>   
  <header class="header-section">
         <div class="header-top">
@@ -31,7 +20,12 @@
                     </div> -->
                 
                 <div class="ht-right">
+                <sec:authorize access="isAuthenticated()">
+						<a href="" class="login-panel"><sec:authentication property="principal.username"/></a> 
+						</sec:authorize>
+<sec:authorize access="isAnonymous()">
                     <a href="login" class="login-panel"><i class="fa fa-user"></i>Login</a>
+</sec:authorize>
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="/resources/img/flag-1.jpg" data-imagecss="flag yt"
@@ -58,7 +52,7 @@
                         <span>All departments</span>
                         <ul class="depart-hover">
                        <c:forEach items="${categories}" var="cat" varStatus="row">
-                            <li th:vlaue="${cat.cat_id }"><a href="/productsbycategory/${cat.cat_id }">${cat.cat_name }</a></li>
+                            <li vlaue="${cat.cat_id }"><a href="/product_list/${cat.cat_id }">${cat.cat_name }</a></li>
                            </c:forEach>
                         </ul>
                     </div>
@@ -80,5 +74,4 @@
             </div>
         </div>
     </header>
-    </body>
-    </html>
+   
