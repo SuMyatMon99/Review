@@ -17,7 +17,7 @@ public class DefaultController {
 	
 	@GetMapping("/")
 	public String home1(Model model) {
-		model.addAttribute("category",categoryService.getCategoryList());
+		model.addAttribute("categories",categoryService.getCategoryList());
 		return "index";
 	}
 

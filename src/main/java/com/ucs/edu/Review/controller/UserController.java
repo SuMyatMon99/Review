@@ -67,6 +67,12 @@ public class UserController {
 		 return "profile";
 	 }
 	 
+	 @RequestMapping("/user/user_list")
+	 public String showUserList(Model model) {
+		 model.addAttribute("userList",userInfoService.getAllUser());
+		 return "user_list_view";
+	 }
+	 
 	@RequestMapping(value="/username",method = RequestMethod.GET)
 	@ResponseBody
 	public String currenntUserName(Principal principal) {

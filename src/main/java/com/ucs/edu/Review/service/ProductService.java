@@ -15,10 +15,11 @@ public interface ProductService {
 	public List<Brand> getBrandList();
 	public List<Category> getCategoryList();
 	public List<Shop> getShopList();
-	public LoginUser getLoginUser(Long id);
+	public LoginUser getLoginUser(String name);
 	
 	public List<Product> getProductListByCategory(Long category_id);
 	
 	public Product getProductById(Long id);
+	
 
 }

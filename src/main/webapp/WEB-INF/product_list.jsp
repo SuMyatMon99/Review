@@ -2,10 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ include file="/WEB-INF/common/include.jsp"%>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Product List</title>
@@ -77,23 +74,18 @@ rating
 	<div class="container-fluid">
 	
 	<div class="container">
-            <div class="inner-header">
-                <div class="row">
-                    <div class="col-lg-2 col-md-2">
-                        
-                        </div>
-                    <div class="col-lg-7 col-md-7">
-                         <form class="form-inline my-2 my-lg-0" th:action="@{/}">
-      <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" th:value="${keyword }" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-                    </div>
-                    <div class="col-lg-3 text-right col-md-3">
-                        
-                    </div>
-                </div>
+                   
+                         <form class="form-inline" action="${pageContext.request.contextPath}/product_list/">
+                         	<div class="col-lg-8">
+          						<input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" value="${keyword }" placeholder="Search" aria-label="Search">
+                         	</div>
+                         	<div class="col-2">
+                         	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                         	</div>
+      						
+    						</form>
+                    
             </div>
-        </div>
 				<h2>Recent Reviews</h2>
 
 			<div class="container" style="min-height:300px;">

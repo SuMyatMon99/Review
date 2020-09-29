@@ -1,14 +1,15 @@
 package com.ucs.edu.Review.dto;
 
 public class LoginUserDTO {
-	private int id;
+	private Long id;
 	private String userName;
 	private String password;
-	private int roleId;
-	public int getId() {
+	private Long roleId;
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getUserName() {
@@ -23,13 +24,14 @@ public class LoginUserDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public int getRoleId() {
+	public Long getRoleId() {
 		return roleId;
 	}
-	public void setRoleId(int roleId) {
+	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
+	
+	
 	
 	
 

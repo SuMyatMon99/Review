@@ -42,9 +42,14 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	private ShopRepository shopRepository;
+	
+	@Autowired
+	private CurrentUserService currentUser;
+	
 	public String UPLOAD_DIRECTORY="/images/";
 	@Override
 	public void SaveProduct(ProductDTO productDTO) throws Exception {
+		
 		Float rate = (float) 5.0000;
 		if(productDTO!=null) {
 		Category cat=categoryRepository.findById(productDTO.getCategory_id()).get();
@@ -74,6 +79,7 @@ public class ProductServiceImpl implements ProductService {
 		product.setBrand(brand);
 		product.setCategory(cat);
 		product.setShop(shop);
+		product.setUser(currentUser.getCurrentUser());
 		productRepository.save(product);
 		}
 	}
@@ -116,8 +122,8 @@ public class ProductServiceImpl implements ProductService {
 
 
 	@Override
-	public LoginUser getLoginUser(Long id) {
-		return userRepository.findById(id).get();
+	public LoginUser getLoginUser(String name) {
+		return userRepository.findUserByUsername(name);
 	}
 
 

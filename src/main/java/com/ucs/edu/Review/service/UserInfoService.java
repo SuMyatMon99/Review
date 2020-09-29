@@ -1,6 +1,6 @@
 package com.ucs.edu.Review.service;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,13 +32,13 @@ public class UserInfoService implements IUserService {
 		userRepository.save(loginUser);
 	}
 
-	@Override public LoginUser findByUsername(String name) { // TODO
+	@Override public LoginUser findByUsername(String name) {
 	  return userRepository.findUserByUsername(name);
 	  }
 
 	@Override
-	public Collection<LoginUser> getAllUser() {
-		return (Collection<LoginUser>) userRepository.findAll();
+	public List<LoginUser> getAllUser() {
+		return userRepository.findAll();
 	}
 
 }

@@ -35,20 +35,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/",
 						"/public/**", "/resources/**",
 						"/images/**",
-						"/register.htm").permitAll()
-				.antMatchers("/author/product_list").hasAnyAuthority("ADAMIN")
-				.antMatchers("/author/product/**").hasAnyAuthority("ADAMIN")
-				.antMatchers("/create_brand").hasAuthority("ADAMIN")
-				.antMatchers("/author/**").hasAuthority("USER")
+						"/register.htm","/product_list").permitAll()
+				.antMatchers("/create_product").hasAnyAuthority("ADMIN","USER","MANAGER")
+				.antMatchers("/product/**").hasAnyAuthority("ADMIN","USER","MANAGER")
+				.antMatchers("/category/**").hasAuthority("ADMIN")
+				.antMatchers("/brand/**").hasAuthority("ADMIN")
+				.antMatchers("/shop/**").hasAuthority("ADMIN")
             .antMatchers("/**").fullyAuthenticated()
-            .anyRequest().authenticated()
             .and()
         .formLogin()
         .loginPage("/login")
         .loginProcessingUrl("/login")
         
         	.failureUrl("/login?error=1")
-        	.defaultSuccessUrl("/")
+        	.defaultSuccessUrl("/",true)
             .permitAll()
             .and()
         .logout()

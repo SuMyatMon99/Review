@@ -4,6 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ucs.edu.Review.dto.ProductDTO;
+import com.ucs.edu.Review.model.LoginUser;
 import com.ucs.edu.Review.model.Product;
 import com.ucs.edu.Review.service.CategoryService;
 import com.ucs.edu.Review.service.ProductService;
@@ -26,8 +31,10 @@ public class ProductController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@PreAuthorize("isAuthorized()")
 	@GetMapping("/create_product")
 	public String createProduct(Model model) {
+	
 		model.addAttribute("product", new ProductDTO());
 		model.addAttribute("category",categoryService.getCategoryList());
 		model.addAttribute("shops", productService.getShopList());
@@ -35,8 +42,10 @@ public class ProductController {
 		model.addAttribute("categories", productService.getCategoryList());
 		return "create_product";
 	}
+	
 	@PostMapping("/save_product")
 	public String saveProduct(@ModelAttribute ("product") ProductDTO productDTO, Model model,@Param("keyword")String keyword) throws Exception {
+		
 		productService.SaveProduct(productDTO);
 		model.addAttribute("products", productService.getProductList(keyword));
 		model.addAttribute("categories", productService.getCategoryList());
@@ -82,27 +91,6 @@ public class ProductController {
 		model.addAttribute("products", productService.getProductListByCategory(id));
 		return "product_list";
 	}
-
-	/*@GetMapping("/register")
-	public String create_register(Model model) {
-		return "register";
-	}
-	@GetMapping("/login")
-	public String login_user(Model model) {
-		return "login";
-	}
-	*/
-	
-	@GetMapping("/blog-details")
-	public String showBolgDetails(Model model) {
-		return "blog-details";
-	}
-	
-	@GetMapping("/faq")
-	public String showFAQ(Model model) {
-		return "faq";
-	}
-	
 	
 	@ResponseBody 
 	@RequestMapping(value = "/search/api/getSearchResult/{id}") 

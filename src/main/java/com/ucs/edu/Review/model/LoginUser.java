@@ -1,13 +1,17 @@
 package com.ucs.edu.Review.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
@@ -23,9 +27,22 @@ public class LoginUser implements Serializable{
     @Transient
     private String passwordConfirm;
 
+    @OneToMany(mappedBy="user")
+    private List<Product> getProductList=new ArrayList<Product>();
+    
     @ManyToOne
     @JoinColumn(name="roleId")
     private UserRole roles;
+
+    
+    
+	public List<Product> getGetProductList() {
+		return getProductList;
+	}
+
+	public void setGetProductList(List<Product> getProductList) {
+		this.getProductList = getProductList;
+	}
 
 	public Long getId() {
 		return id;

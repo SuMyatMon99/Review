@@ -20,7 +20,9 @@
     <definition name="product_detail" extends="layout.basic">
     	<put-attribute name="body" value="/WEB-INF/product_detail.jsp" />
     </definition>
-    
+     <definition name="user_list_view" extends="layout.basic">
+    	<put-attribute name="body" value="/WEB-INF/user_list_view.jsp" />
+    </definition>
     <definition name="category_list" extends="layout.basic">
     	<put-attribute name="body" value="/WEB-INF/category_list.jsp" />
     </definition>

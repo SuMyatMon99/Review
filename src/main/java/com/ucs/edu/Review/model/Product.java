@@ -1,16 +1,15 @@
 package com.ucs.edu.Review.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 
 @Entity
 public class Product implements Serializable{
@@ -27,6 +26,7 @@ public class Product implements Serializable{
 	private String photoPath;
 	private String descr;
 	private Float totalRating;
+	private Date date;
 	@ManyToOne
 	@JoinColumn(name="cat_id")
 	private Category category;
@@ -37,6 +37,31 @@ public class Product implements Serializable{
 	@JoinColumn(name="shop_id")
 	private Shop shop;
 	
+	@ManyToOne
+	@JoinColumn(name="user_id",nullable=true)
+	private LoginUser user;
+	
+	@PrePersist
+	public void createDate() {
+		if(date==null) {
+			date = new Date();
+		}
+	}
+	
+	public LoginUser getUser() {
+		return user;
+	}
+
+	public void setUser(LoginUser user) {
+		this.user = user;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
 	public Float getTotalRating() {
 		return totalRating;
 	}
