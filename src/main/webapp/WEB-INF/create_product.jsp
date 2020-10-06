@@ -7,18 +7,27 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Product</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/jjx3ynxjpab601a8mlxcqrj4c62hoe238rpf2qkm19s152ow/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<link rel="stylesheet" href="<c:url value='/resources/css/custom.css' />" type="text/css">
+<style>
+	#btn-custom{
+		color:white;
+		background-color:#e7ab3c;
+	}
+
+</style>
+
 </head>
 <body>
 <%@ include file="bootstrap.jsp" %>
 <div class="container">
-<h2 style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;">Add Product</h2>
+<h2 style="margin-top:10px; color:rgba(246, 75, 8, 0.876);font-style: oblique;">Create Post</h2>
 
 <div class="row">
-<div class="col-4">
-	<img id="output" width="400" style="margin-top:200px;"/>	
-</div>
-<div class="col-6">
-<form:form action="save_product" method="POST" enctype="multipart/form-data" modelAttribute="product" style="width:300px; color:rgba(246, 75, 8, 0.876);font-style: oblique;">
+
+<div class="col-6 auto">
+<form:form action="save_product" method="POST" enctype="multipart/form-data" modelAttribute="product" style="width:100%;padding:40px; color:rgba(246, 75, 8, 0.876);font-style: oblique;">
 <div class="form-group">
 	<label style="font-style: oblique; font-size: 20px;">Name:</label>
 	<form:input path="product_name" class="form-control" placeholder="Name..." style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"/>
@@ -37,7 +46,13 @@
 </div>
 <div class="form-group">
 	<label style="font-style: oblique; font-size: 20px;">Review :</label>
-	<form:textarea path="descr" rows="4" class="form-control" placeholder="Write your review...." width="200" style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"/>
+	<div class="row justify-content-md-center">
+    <div class="col-md-12 col-lg-12">
+      <div class="form-group">
+         <form:textarea id="editor" path="descr" placeholder="Write your isssue"></form:textarea>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="form-group">
 <label style="font-style: oblique; font-size: 20px;">Shop:</label>
@@ -56,19 +71,31 @@
 </form:select>
 </div>
 <div class="from-group">
-	<label style="font-style: oblique; font-size: 20px;">File to upload</label>
-	<form:input path="file" type="file" name="file" id="file" onchange="loadFile(event)"/>
+	<form:input style="font-style: oblique; font-size: 20px;margin:0px 0px 10px;" path="file" type="file" name="file" id="file" onchange="loadFile(event)" class="form-contorl"/>
 </div>
-<button type="submit" class="btn btn-secondary">Save</button>
+<button type="submit" class="btn form-control" id="btn-custom">Post</button>
 </form:form>
 </div>
+<div class="col-4 auto">
+	<img id="output" width="100%" style="margin-top:200px;"/>	
 </div>
 </div>
+</div>
+
 <script>
 var loadFile = function(event) {
 	var image = document.getElementById('output');
 	image.src = URL.createObjectURL(event.target.files[0]);
 };
+</script>
+<script>
+  tinymce.init({
+    selector: 'textarea#editor',
+    skin: 'bootstrap',
+    plugins: 'lists, link, image, media',
+    toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help',
+    menubar: false
+  });
 </script>
 </body>
 </html>

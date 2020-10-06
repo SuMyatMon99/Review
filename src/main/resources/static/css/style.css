@@ -123,6 +123,12 @@ ol {
 	color: #e7ab3c;
 }
 
+/*customized*/
+.btn-custom{
+		color:white;
+		background-color:#e7ab3c;
+	}
+
 .section-title .product-price span {
 	font-size: 16px;
 	font-weight: 400;
@@ -681,7 +687,7 @@ ol {
 	color: #ffffff;
 	right: 20px;
 	top: 13px;
-	content: "";
+	content: "ï„‡";
 	font-family: FontAwesome;
 	font-size: 18px;
 }
@@ -1699,7 +1705,7 @@ ol {
 	position: absolute;
 	right: -18px;
 	top: 0px;
-	content: "";
+	content: "ï„…";
 	font-family: "FontAwesome";
 	font-size: 16px;
 	color: #b2b2b2;
@@ -3730,7 +3736,7 @@ ol {
 
 .faq-accordin .card-heading a:after,
 .faq-accordin .card-heading>a.active[aria-expanded=false]:after {
-	content: "";
+	content: "ï�§";
 	font-family: "FontAwesome";
 	font-size: 14px;
 	color: #404040;
@@ -3747,7 +3753,7 @@ ol {
 
 .faq-accordin .card-heading a[aria-expanded=true]:after,
 .faq-accordin .card-heading>a.active:after {
-	content: "";
+	content: "ï�¨";
 	font-family: "FontAwesome";
 	float: left;
 	font-size: 13px;

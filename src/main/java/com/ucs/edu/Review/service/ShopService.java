@@ -8,4 +8,5 @@ import com.ucs.edu.Review.model.Shop;
 public interface ShopService {
 	public void saveShop(ShopDTO shopDTO);
 	public List<ShopDTO> getShopList();
+	public void deleteShopById(Long id);
 }

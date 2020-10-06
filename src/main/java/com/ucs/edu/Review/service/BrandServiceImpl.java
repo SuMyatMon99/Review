@@ -22,9 +22,11 @@ public class BrandServiceImpl implements BrandService{
 	
 	@Override
 	public void saveBrand(BrandDTO brandDTO) {
+		if(brandDTO.getBrand_name()!=null) {
 		Brand brand = new Brand();
 		brand.setBrand_name(brandDTO.getBrand_name());
 		brandRepository.save(brand);
+		}
 	}
 
 	@Override
@@ -33,4 +35,10 @@ public class BrandServiceImpl implements BrandService{
 		return dto;
 	}
 
+	@Override
+	public void deleteBand(Long id) {
+		brandRepository.deleteById(id);
+	}
+	
+	
 }

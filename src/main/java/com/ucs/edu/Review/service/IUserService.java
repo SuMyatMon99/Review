@@ -3,6 +3,7 @@ package com.ucs.edu.Review.service;
 import java.util.List;
 
 import com.ucs.edu.Review.dto.LoginUserDTO;
+import com.ucs.edu.Review.dto.UserProfileDTO;
 import com.ucs.edu.Review.model.LoginUser;
 
 public interface IUserService {
@@ -12,5 +13,7 @@ public interface IUserService {
 	public LoginUser findByUsername(String name);
 	
 	public List<LoginUser> getAllUser();	
+	
+	public void uploadProfile(UserProfileDTO dot) throws Exception;
 	
 }

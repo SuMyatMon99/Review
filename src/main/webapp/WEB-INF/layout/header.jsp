@@ -19,9 +19,9 @@
          
 				</sec:authorize>
 						
-<sec:authorize access="isAnonymous()">
+				<sec:authorize access="isAnonymous()">
                     <a href="login" class="login-panel"><i class="fa fa-user"></i>Login</a>
-</sec:authorize>
+				</sec:authorize>
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="/resources/img/flag-1.jpg" data-imagecss="flag yt"
@@ -54,6 +54,7 @@
 								<li><a href="<c:url value='/shop/shop_list' />">Shop List</a></li>
 								<li><a href="<c:url value='/category/create_category' />">Create Category</a></li>	
 								<li><a href="<c:url value='/category/category_list' />">Category List</a></li>
+								<li><a href="<c:url value='/admin/product_list' />">Manage Product</a></li>
 								<li><a href="/user/user_list">User List</a></li>							
 								<li><a href="/product_list">User View</a></li>	
                             </ul>
@@ -73,8 +74,7 @@
                         </ul>
                         </div>
                 </div>
-                  </sec:authorize>
-                    
+                  </sec:authorize>  
                 <nav class="nav-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="/">Home</a></li>
@@ -88,8 +88,20 @@
                             </sec:authorize>
                             </ul>
                         </li>
+                        <sec:authorize access="isAuthenticated()">
+                        <li>
+                         <form class="form-inline" action="${pageContext.request.contextPath}/product_list/">
+                         	<div class="col-8">
+          						<input class="form-inline mr-sm-2" type="search" name="keyword" id="keyword" value="${keyword }" placeholder="Search" aria-label="Search">
+                         	</div>
+                         	<div class="col-2">
+                         	<button class="btn btn-outline-success" type="submit" style="position:relative;">Search</button>
+                         	</div>
+    						</form>
+                        </li>
+                        </sec:authorize>
                     </ul>
-                  
+                 
 
                 </nav>
                 

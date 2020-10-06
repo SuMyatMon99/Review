@@ -4,6 +4,40 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
+ <definition name="layout.admin" template="/WEB-INF/layout1/master.jsp">
+        <put-attribute name="header" value="/WEB-INF/layout1/header.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/layout1/footer.jsp" />
+    </definition>
+    
+    <!-- Pages -->        
+    <definition name="admin_product_list" extends="layout.admin">
+        <put-attribute name="body" value="/WEB-INF/admin_product_list.jsp" />
+    </definition>
+    
+    <definition name="product_detail" extends="layout.admin">
+    	<put-attribute name="body" value="/WEB-INF/product_detail.jsp" />
+    </definition>
+    <definition name="category_list" extends="layout.admin">
+    	<put-attribute name="body" value="/WEB-INF/category_list.jsp" />
+    </definition>
+    
+    <definition name="brand_list" extends="layout.admin">
+    	<put-attribute name="body" value="/WEB-INF/brand_list.jsp" />
+    </definition>
+    <definition name="shop_list" extends="layout.admin">
+    	<put-attribute name="body" value="/WEB-INF/shop_list.jsp" />
+    </definition>
+    <definition name="create_category" extends="layout.admin">
+    	<put-attribute name="body" value="/WEB-INF/create_category.jsp" />
+    </definition>
+   
+    <definition name="create_brand" extends="layout.admin">
+    	<put-attribute name="body" value="/WEB-INF/create_brand.jsp" />
+    </definition>
+    <definition name="create_shop" extends="layout.admin">
+    	<put-attribute name="body" value="/WEB-INF/create_shop.jsp" />
+    </definition>
     <!-- Templates -->      
     <definition name="layout.basic" template="/WEB-INF/layout/master.jsp">
         
@@ -16,40 +50,22 @@
     <definition name="index" extends="layout.basic">
         <put-attribute name="body" value="/WEB-INF/index.jsp" />
     </definition>
-    
+     <definition name="create_product" extends="layout.basic">
+    	<put-attribute name="body" value="/WEB-INF/create_product.jsp" />
+    </definition>
     <definition name="product_detail" extends="layout.basic">
     	<put-attribute name="body" value="/WEB-INF/product_detail.jsp" />
     </definition>
      <definition name="user_list_view" extends="layout.basic">
     	<put-attribute name="body" value="/WEB-INF/user_list_view.jsp" />
     </definition>
-    <definition name="category_list" extends="layout.basic">
-    	<put-attribute name="body" value="/WEB-INF/category_list.jsp" />
-    </definition>
     <definition name="product_list" extends="layout.basic">
     	<put-attribute name="body" value="/WEB-INF/product_list.jsp" />
-    </definition>
-    <definition name="brand_list" extends="layout.basic">
-    	<put-attribute name="body" value="/WEB-INF/brand_list.jsp" />
-    </definition>
-    <definition name="shop_list" extends="layout.basic">
-    	<put-attribute name="body" value="/WEB-INF/shop_list.jsp" />
     </definition>
     <definition name="location_list" extends="layout.basic">
     	<put-attribute name="body" value="/WEB-INF/location_list.jsp" />
     </definition>
-    <definition name="create_category" extends="layout.basic">
-    	<put-attribute name="body" value="/WEB-INF/create_category.jsp" />
-    </definition>
-    <definition name="create_product" extends="layout.basic">
-    	<put-attribute name="body" value="/WEB-INF/create_product.jsp" />
-    </definition>
-    <definition name="create_brand" extends="layout.basic">
-    	<put-attribute name="body" value="/WEB-INF/create_brand.jsp" />
-    </definition>
-    <definition name="create_shop" extends="layout.basic">
-    	<put-attribute name="body" value="/WEB-INF/create_shop.jsp" />
-    </definition>
+    
     <definition name="create_location" extends="layout.basic">
     	<put-attribute name="body" value="/WEB-INF/create_location.jsp" />
     </definition>

@@ -16,6 +16,7 @@
 		<tr>
 			<th>No</th>
 			<th>Name</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -23,7 +24,7 @@
 			<tr>
 				<td>${row.count }</td>
 				<td>${br.brand_name }</td>
-				
+				<td><a href="/brand_delete/${br.brand_id }" class="btn btn-danger">DELETE</a></td>
 			</tr>
 		</c:forEach>
 	</tbody>

@@ -8,4 +8,6 @@ import com.ucs.edu.Review.model.Brand;
 public interface BrandService {
 	public void saveBrand(BrandDTO brandDTO);
 	public List<BrandDTO> getBrandList();
+	public void deleteBand(Long id);
+	
 }

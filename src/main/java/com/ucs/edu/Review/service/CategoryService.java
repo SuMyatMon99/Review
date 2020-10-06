@@ -8,4 +8,6 @@ public interface CategoryService {
 	public void saveCategory(CategoryDTO categoryDTO);
 	
 	public List<CategoryDTO> getCategoryList();
+	
+	public void deleteCategoryById(Long id);
 }

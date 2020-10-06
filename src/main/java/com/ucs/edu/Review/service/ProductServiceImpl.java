@@ -133,9 +133,6 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return productRepository.getProductListByCategory(category_id);
 	}
-
-
-
 	@Override
 	public Product getProductById(Long id) {
 		return productRepository.findById(id).get();

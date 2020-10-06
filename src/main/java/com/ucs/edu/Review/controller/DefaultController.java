@@ -20,6 +20,10 @@ public class DefaultController {
 		model.addAttribute("categories",categoryService.getCategoryList());
 		return "index";
 	}
+	@GetMapping("/admin")
+	public String adminHome(Model model) {
+		return "index";
+	}
 
 	@GetMapping("/blog-details.htm")
 	public String home() {

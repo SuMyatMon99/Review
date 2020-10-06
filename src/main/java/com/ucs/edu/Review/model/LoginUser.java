@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +22,8 @@ public class LoginUser implements Serializable{
     private String username;
 
     private String password;
+    
+    private String photoPath;
 
     @Transient
     private String passwordConfirm;
@@ -36,6 +37,14 @@ public class LoginUser implements Serializable{
 
     
     
+	public String getPhotoPath() {
+		return photoPath;
+	}
+
+	public void setPhotoPath(String photoPath) {
+		this.photoPath = photoPath;
+	}
+
 	public List<Product> getGetProductList() {
 		return getProductList;
 	}

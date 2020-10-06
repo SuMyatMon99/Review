@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,17 +28,25 @@ public class ShopController {
 	}
 	@PostMapping("/save_shop")
 	public String saveShop(@ModelAttribute ("shop") ShopDTO shopDTO, Model model) {
-		if(shopDTO==null) {
-			return "create_shop";
+		if(shopDTO.getShop_name()!=null) {
+			shopService.saveShop(shopDTO);
+			model.addAttribute("shops", shopService.getShopList());
+			return "shop_list";
+			
 		}else {
-		shopService.saveShop(shopDTO);
-		model.addAttribute("shops", shopService.getShopList());
-		return "shop_list";
+			return "redirect:/create_shop";
 		}
 		
 	}
 	@GetMapping("/shop_list")
 	public String showShop(Model model) {
+		model.addAttribute("shops", shopService.getShopList());
+		return "shop_list";
+	}
+	
+	@RequestMapping("/shop_delete/{id}")
+	public String deleteShop(Model model,@PathVariable Long id) {
+		shopService.deleteShopById(id);
 		model.addAttribute("shops", shopService.getShopList());
 		return "shop_list";
 	}

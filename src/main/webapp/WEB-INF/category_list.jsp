@@ -9,13 +9,31 @@
 </head>
 <body>
 <%@ include file="bootstrap.jsp"%>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Manage Category</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">List</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 <div class="container">
-<h3 style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;"> Brand List</h3>
-<table class="table" style=" color:rgba(246, 75, 8, 0.876);font-style: oblique;">
+<table class="table" style=" color:gray;font-style: oblique;">
 	<thead>
 		<tr>
 			<th>No</th>
 			<th>Name</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -23,11 +41,12 @@
 			<tr>
 				<td>${row.count }</td>
 				<td>${cat.cat_name }</td>
-				
+				<td><a href="/category/category_delete/${cat.cat_id}" class="btn btn-danger">DELETE</a></td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
+</div>
 </div>
 </body>
 </html>

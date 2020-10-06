@@ -4,33 +4,25 @@ package com.ucs.edu.Review.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import com.ucs.edu.Review.error.MyAccessDeniedHandler;
-import com.ucs.edu.Review.service.UserDetailsServiceImpl;
-
-
 @Configuration
 @EnableWebSecurity 
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	MyAccessDeniedHandler accessDeniedHandler;
-
-	@Autowired
-	UserDetailsServiceImpl userService;
+	UserDetailsService userService;
 
 	
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-		.csrf().disable()
+		
         .authorizeRequests()
 				.antMatchers("/",
 						"/public/**", "/resources/**",
@@ -44,17 +36,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/**").fullyAuthenticated()
             .and()
         .formLogin()
-        .loginPage("/login")
-        .loginProcessingUrl("/login")
-        
-        	.failureUrl("/login?error=1")
-        	.defaultSuccessUrl("/",true)
+        	.loginPage("/login")
+        	.loginProcessingUrl("/login")
+        		.failureUrl("/login")
+        		.defaultSuccessUrl("/product_list",true)
             .permitAll()
             .and()
         .logout()
          .logoutUrl("/logout")
             .logoutSuccessUrl("/login")
-            .permitAll();	
+            .permitAll()
+            .and()
+            .csrf().disable().cors();
+	
 	}
 
 	@Bean

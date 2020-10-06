@@ -25,7 +25,7 @@ public class Review implements Serializable{
 	private Long reviewId;
 	private String comment;
 	private Date createdDate;
-	private Double rating;
+	private Float rating;
 	
 	@ManyToOne
 	@JoinColumn(name="productId",nullable=false)
@@ -39,7 +39,7 @@ public class Review implements Serializable{
 		super();
 	}
 
-	public Review(Long reviewId, String comment, Date createdDate, Double rating, Product product, LoginUser user) {
+	public Review(Long reviewId, String comment, Date createdDate, Float rating, Product product, LoginUser user) {
 		super();
 		this.reviewId = reviewId;
 		this.comment = comment;
@@ -49,12 +49,12 @@ public class Review implements Serializable{
 		this.user = user;
 	}
 
-	public Double getRating() {
+	public Float getRating() {
 		return rating;
 	}
 
-	public void setRating(Double rating) {
-		this.rating = rating;
+	public void setRating(Float float1) {
+		this.rating = float1;
 	}
 
 	public static long getSerialversionuid() {

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ucs.edu.Review.dto.ProductDTO;
+import com.ucs.edu.Review.dto.ReviewDTO;
 import com.ucs.edu.Review.model.LoginUser;
 import com.ucs.edu.Review.model.Product;
 import com.ucs.edu.Review.service.CategoryService;
@@ -45,11 +46,14 @@ public class ProductController {
 	
 	@PostMapping("/save_product")
 	public String saveProduct(@ModelAttribute ("product") ProductDTO productDTO, Model model,@Param("keyword")String keyword) throws Exception {
-		
+		if(productDTO.getProduct_name()!=null) {
 		productService.SaveProduct(productDTO);
 		model.addAttribute("products", productService.getProductList(keyword));
 		model.addAttribute("categories", productService.getCategoryList());
 		return "product_list";
+		}else {
+			return "redirect:/create_product";
+		}
 	}
 	@GetMapping("/product_list")
 	public String showProducts( Model model ,@Param("keyword")String keyword) {
@@ -77,13 +81,7 @@ public class ProductController {
 	 */
 	
 	
-	@RequestMapping("/product/{id}")
-	public String productDetails(@PathVariable("id") Long id,Model model) {
-		System.out.println(id);
-		model.addAttribute("product", productService.getProductById(id));
-		return "product_detail";
-	}
-
+	
 	@RequestMapping("/productsbycategory/{cat_id}")
 	public String showProductListByCategory(@PathVariable("cat_id") Long id, Model model) {
 		System.out.println(id);

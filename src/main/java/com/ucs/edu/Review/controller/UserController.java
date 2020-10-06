@@ -12,12 +12,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ucs.edu.Review.dto.LoginUserDTO;
+import com.ucs.edu.Review.dto.UserProfileDTO;
+import com.ucs.edu.Review.service.CurrentUserService;
 import com.ucs.edu.Review.service.IUserService;
 
 @Controller
@@ -26,6 +32,9 @@ public class UserController {
 	@Autowired
 	IUserService userInfoService;
 
+	@Autowired
+	private CurrentUserService currentUserService;
+	
 	/*@Autowired
 	SecurityService securityService;
 	*/
@@ -61,12 +70,35 @@ public class UserController {
 	         return "redirect:/login.htm";  
 	     } 
 	 
-	 @RequestMapping("/profile")
-	 public String profile(Principal principal,Model model) {
-		 model.addAttribute("username",principal.getName());
+	 @GetMapping("/profile")
+	 public String profile(Model model) {
+		 model.addAttribute("user",currentUserService.getCurrentUser());
+		 model.addAttribute("profile",new UserProfileDTO());
 		 return "profile";
 	 }
-	 
+
+		/*
+		 * @PostMapping("/profile/update") public String saveProfile(Model
+		 * model,@ModelAttribute("profile")UserProfileDTO dto) throws Exception {
+		 * if(dto.getFile()!=null) { userInfoService.uploadProfile(dto); }
+		 * model.addAttribute("user",currentUserService.getCurrentUser()); return
+		 * "profile";
+		 * 
+		 * }
+		 */
+		
+		@PostMapping(value="/profile/update")
+		public String saveUploadFile(Model model,@RequestParam("file") MultipartFile file,@RequestParam("username")String name) throws Exception {
+			UserProfileDTO dto = new UserProfileDTO();
+			dto.setFile(file);
+			dto.setUsername(name);
+			if(dto.getFile()!=null) {
+				userInfoService.uploadProfile(dto);
+				}
+				 model.addAttribute("user",currentUserService.getCurrentUser());
+			return "profile";
+		}
+		
 	 @RequestMapping("/user/user_list")
 	 public String showUserList(Model model) {
 		 model.addAttribute("userList",userInfoService.getAllUser());
@@ -79,4 +111,6 @@ public class UserController {
 		
 		return principal.getName();
 	}
+	
+	
 }
