@@ -3,6 +3,7 @@ package com.ucs.edu.Review.service;
 import java.util.List;
 
 import com.ucs.edu.Review.dto.ProductDTO;
+import com.ucs.edu.Review.dto.RatingProductUpdateDTO;
 import com.ucs.edu.Review.model.Brand;
 import com.ucs.edu.Review.model.Category;
 import com.ucs.edu.Review.model.LoginUser;
@@ -21,5 +22,5 @@ public interface ProductService {
 	
 	public Product getProductById(Long id);
 	
-
+	public void updateRating(RatingProductUpdateDTO updateDto);
 }

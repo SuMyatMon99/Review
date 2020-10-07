@@ -3,19 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html lang="zxx">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Fashi Template">
-    <meta name="keywords" content="Fashi, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fashi | Template</title>
-</head>
-
-<body>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -35,22 +22,47 @@
             </div>
         </div>
     </div>
-    <!-- Register Section Begin -->
-    <div class="register-login-section ">
+    <div class="register-login-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
+                    <div class="login-form">
+                    <fieldset>
+            <legend>Please sign in</legend>
+            <c:if test="${param.error != null}" >         
+        <p>  
+            Invalid username and password.  
+        </p>  
+    </c:if>  
+    <c:if test="${param.logout != null}">         
+        <p>  
+            You have been logged out.  
+        </p>  
+    </c:if> 
+                        <h2>Register</h2>
                    <form:form method="post" action="/register.htm" modelAttribute="userDTO">
-User Name:<form:input path="userName" type="text"/><br>
-Password: <form:password path="password" /><br>
-<input type="submit" value="Submit" />
-</form:form>
+                   	 <div class="form-group">						
+                   	 	<label>User Name:</label><form:input path="userName" class="form-control" type="text"/><br>
+                     </div>
+                   	 <div class="form-group">
+						<label>Enter the email:</label><form:input path="email" class="form-control" type="text"/><br>                   	 
+                   	 </div>
+                   	 <div class="form-group">
+						<label>Enter the phone:</label><form:input path="phone" class="form-control" type="text"/><br>                   	 
+                   	 </div>
+                   	 <div class="form-group">
+						<label>Enter the Password:</label><form:password path="password" class="form-control" /><br>                   	 
+                   	 </div>                   	 
+					<input type="submit" value="Submit" class="form-control btn-custom"/>
+					</form:form>
+					</fieldset>
                 <div class="switch-login">
                             <a href="/login" class="or-login">Or Login</a>
                         </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- Register Form Section End -->
     
@@ -87,7 +99,3 @@ Password: <form:password path="password" /><br>
         </div>
     </div>
     <!-- Partner Logo Section End -->
-
-</body>
-
-</html>

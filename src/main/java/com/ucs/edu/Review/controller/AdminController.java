@@ -47,10 +47,11 @@ public class AdminController {
 		return "admin_product_list";
 	}
 	
-	@PostMapping("/product_delete")
-	public String deleteProduct(Model model,@ModelAttribute("product")Product product) {
-		productRepository.delete(product);
-		model.addAttribute("products",productRepository.findAll());
-		return "admin_product_list";
-	}
+	/*
+	 * @PostMapping("/product_delete") public String deleteProduct(Model
+	 * model,@ModelAttribute("product")Product product) {
+	 * productRepository.delete(product);
+	 * model.addAttribute("products",productRepository.findAll()); return
+	 * "admin_product_list"; }
+	 */
 }

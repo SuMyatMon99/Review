@@ -35,17 +35,21 @@ public class UserInfoService implements IUserService {
 
 	public String UPLOAD_DIRECTORY="/images/";
 	
+	@Override
 	public void saveUser(LoginUserDTO user) {
 		LoginUser loginUser = new LoginUser();
 		loginUser.setUsername(user.getUserName());
+		loginUser.setEmail(user.getEmail());
+		loginUser.setPhone(user.getPhone());
 		loginUser.setPassword(passwordEncoder.encode(user.getPassword()));
 		loginUser.setRoles(roleRepository.findAll().get(2));
 		userRepository.save(loginUser);
 	}
 
-	@Override public LoginUser findByUsername(String name) {
-	  return userRepository.findUserByUsername(name);
-	  }
+	@Override 
+	public LoginUser findByUsername(String name) {
+	  return userRepository.findByEmail(name);
+	}
 
 	@Override
 	public List<LoginUser> getAllUser() {

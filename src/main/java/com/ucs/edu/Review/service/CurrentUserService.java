@@ -18,12 +18,12 @@ public class CurrentUserService implements CurrentUserServiceInterface{
 	public LoginUser getCurrentUser() {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	if (principal instanceof UserDetails) {
-		  String username = ((UserDetails)principal).getUsername();
-			System.out.println("String"+username);	
-			return userRepository.findUserByUsername(username);
+		  String email = ((UserDetails)principal).getUsername();
+			System.out.println("String"+email);	
+			return userRepository.findByEmail(email);
 		} else {
-		  String username = principal.toString();
-			System.out.println("TO String:"+username);
+		  String email = principal.toString();
+			System.out.println("TO String:"+email);
 			return null;
 		}
 	}

@@ -3,16 +3,16 @@
 	<h2>Recent Reviews</h2>
 	<div class="container" style="min-height: 300px;">
 		<div class="row">
-			<div class="col-9">
+			<div class="col-lg-9">
 				<div class="row">
 					<c:forEach items="${products}" var="prod" varStatus="row">
-						<div class="card m-2 col-5" style="max-height: 300px auto;">
+						<div class="card m-2 col-lg-5" style="max-height: 300px auto;">
 							<div class="row no-gutters">
-								<div class="col-md-4 mt-2">
-									<img src="/images/${prod.photoPath }" class="card-img"
+								<div class="col-lg-4 mt-2">
+									<img id="productImg" src="/images/${prod.photoPath }" class="card-img"
 										alt="...">
 								</div>
-								<div class="col-md-8">
+								<div class="col-lg-8">
 									<div class="card-body">
 										<h3 class="card-title">${prod.product_name }</h3>
 									</div>
@@ -31,7 +31,7 @@
 					</c:forEach>
 				</div>
 			</div>
-			<div class="col-3">
+			<div class="col-lg-3">
 				<c:forEach items="${products}" var="prod" varStatus="row">
 					<div class="card" style="max-height: 200px; margin: 10px;">
 						<a href="/product/${prod.product_id }" class="card-title"> <img

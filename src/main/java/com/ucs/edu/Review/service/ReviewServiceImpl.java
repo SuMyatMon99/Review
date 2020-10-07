@@ -23,7 +23,6 @@ public class ReviewServiceImpl implements ReviewsService{
 	@Override
 	public void saveReview(ReviewDTO dto) {
 		if(currentUserService.getCurrentUser()!=null) {
-			Long id = (long) 29;
 		Product product=productService.getProductById(dto.getProduct_id());
 		Review review = new Review();
 		review.setComment(dto.getComment());

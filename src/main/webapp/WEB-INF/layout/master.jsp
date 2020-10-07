@@ -1,10 +1,8 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ include file="/WEB-INF/common/include.jsp"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>	
 <!DOCTYPE html>   
-<html>
+<html lang="utf-8">
     <head>
         <title>Test</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,45 +31,7 @@
     <script src="<c:url value='/resources/js/owl.carousel.min.js' />"></script>
     <script src="<c:url value='/resources/js/main.js' />"></script>
 <style>
-    [class*="col-"] {
-    	  width: 100%;
-    	}
-    	 [class*="commentBox"] {
-    	 	margin:0px;
-    	  	width: 100%;
-    	}
-    @media only screen and (min-width: 600px) {
-    	  /* For desktop: */
-    	  
-    	  .col-1 {width: 8.33%;}
-    	  .col-2 {width: 16.66%;}
-    	  .col-3 {width: 25%;}
-    	  .col-4 {width: 33.33%;}
-    	  .col-5 {width: 41.66%;}
-    	  .col-6 {width: 50%;}
-    	  .col-7 {width: 58.33%;}
-    	  .col-8 {width: 66.66%;}
-    	  .col-9 {width: 75%;}
-    	  .col-10 {width: 83.33%;}
-    	  .col-11 {width: 91.66%;}
-    	  .col-12 {width: 100%;}
-    	}
-    @media only screen and (min-width: 768px) {
-    	  /* For desktop: */
-    	  
-    	  .col-1 {width: 8.33%;}
-    	  .col-2 {width: 16.66%;}
-    	  .col-3 {width: 25%;}
-    	  .col-4 {width: 33.33%;}
-    	  .col-5 {width: 41.66%;}
-    	  .col-6 {width: 50%;}
-    	  .col-7 {width: 58.33%;}
-    	  .col-8 {width: 66.66%;}
-    	  .col-9 {width: 75%;}
-    	  .col-10 {width: 83.33%;}
-    	  .col-11 {width: 91.66%;}
-    	  .col-12 {width: 100%;}
-    	}
+    
     </style>
     </head>
     <body>

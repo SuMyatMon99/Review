@@ -2,7 +2,6 @@
 package com.ucs.edu.Review.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,8 +14,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	UserDetailsService userService;
+	UserDetailsService userDetailsService;
 
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 
 	@Override
@@ -37,9 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
         .formLogin()
         	.loginPage("/login")
-        	.loginProcessingUrl("/login")
+        	.usernameParameter("email")
         		.failureUrl("/login")
-        		.defaultSuccessUrl("/product_list",true)
+        		.defaultSuccessUrl("/default")
             .permitAll()
             .and()
         .logout()
@@ -51,14 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	}
 
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
 
 	}
 }
