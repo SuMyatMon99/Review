@@ -1,155 +1,98 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+
 <%@ include file="/WEB-INF/common/include.jsp"%>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-<meta charset="ISO-8859-1">
-<title>Product List</title>
 <style>
-
-
-#card-footer {
-	width: 100%;
-	margin-bottom: 0px;
-	text-align: center;
-}
-
-//
-rating
-	* {
-	margin: 0;
-	padding: 0;
-}
-
-.rate {
-	float: left;
-	height: 46px;
-	padding: 0 10px;
-}
-
-.rate:not(:checked)>input {
-	position: absolute;
-	top: -9999px;
-}
-
-.rate:not(:checked)>label {
-	float: right;
-	width: 1em;
-	overflow: hidden;
-	white-space: nowrap;
-	cursor: pointer;
-	font-size: 30px;
-	color: #ccc;
-}
-
-.rate:not(:checked)>label:before {
-	content: '* ';
-}
-
-.rate>input:checked ~ label {
-	color: #ffc700;
-}
-
-.rate:not(:checked)>label:hover, .rate:not(:checked)>label:hover ~ label
-	{
-	color: #deb217;
-}
-
-.rate>input:checked+label:hover, .rate>input:checked+label:hover ~ label,
-	.rate>input:checked ~ label:hover, .rate>input:checked ~ label:hover ~
-	label, .rate>label:hover ~ input:checked ~ label {
-	color: #c59b08;
-}
-//
-end
-
- 
-
-rating
+	#mainBackgorund{
+		background-image: url('/resources/img/dell.jpg');
+		background-repeat: no-repeat;
+		background-attachment: relative;
+  		background-size: cover;
+	}
 </style>
-</head>
-<body>
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" id="mainBackgorund">
 
-	<div class="container-fluid">
-	
-	<div class="container">
-            <div class="inner-header">
-                <div class="row">
-                    <div class="col-lg-2 col-md-2">
-                        
+    <!-- Main content -->
+    <section class="content" style="min-height:500px;">
+        <div class="container-fluid" style="padding-top:150px;">
+        	<div class="text-center">
+        	<div class="row">
+        	<div class="col-lg-4"></div>
+        	<div class="col-lg-4" style="width:200px; margin-bottom:20px;">
+            	<h4 style="color:white;">42 million product reviews from people just like you</h4>
+			</div>
+        	</div>
+        	
+</div>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <form action="${pageContext.request.contextPath}/product_list/">
+                        <div class="input-group">
+                            <input type="search" name="keyword" class="form-control form-control-lg" placeholder="Type your keywords here">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-lg btn-default">
+                                    <i class="fa fa-search" style="color:white;"></i>
+                                </button>
+                            </div>
                         </div>
-                    <div class="col-lg-7 col-md-7">
-                         <form class="form-inline my-2 my-lg-0" th:action="@{/}">
-      <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" th:value="${keyword }" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-                    </div>
-                    <div class="col-lg-3 text-right col-md-3">
-                        
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-				<h2>Recent Reviews</h2>
-
-			<div class="container" style="min-height:300px;">
-			<div class="row">
-			<div class="col-9">
+    </section>
+  </div>
+	<div class="container" style="min-height: 500px;">
+		<h3 class="mt-3 mb-3">Recent Reviews</h3>
+		<div class="row">
+			<div class="col-lg-10">
 				<div class="row">
 					<c:forEach items="${products}" var="prod" varStatus="row">
-						<div class="card m-2 col-5" style="max-height: 300px;">
-							<div class="row no-gutters">
-								<div class="col-md-4 mt-2">
-									<img src="/images/${prod.photoPath }" class="card-img"
-										alt="...">
-								</div>
-								<div class="col-md-8">
+					<div class="col-lg-4 col-6">
+						<div class="card" style="max-height:250px;">
+							<div class="row">
+									<img id="productImg" src="/images/${prod.photoPath }"
+										class="card-img p-3" alt="..." style="max-height:120px;width:auto;">
 									<div class="card-body">
-										<div class="row">
-											<h3 class="card-title">${prod.product_name }</h3>
-											<span class="card-text"
-												style="max-height: 50px; overflow: hidden; margin-top: 20px; margin-bottom: 20px;">${prod.descr }
-											</span> <strong class="card-text">${prod.shop.shop_name}</strong>
-
-										</div>
-
+									<a href="/review/${prod.product_id }"><span class="card-title">${prod.product_name }</span></a>
+										 <br><strong class="card-text ">Brand    : ${prod.brand.brand_name}</strong>									
+										 <br><strong class="card-text ">Reviewer : ${prod.user.username}</strong>									
+										<div class="rate">
+    											<span class="fa fa-star checked"></span> 
+    											<span class="fa fa-star checked"></span>
+    											 <span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+				 								<span class="fa fa-star"></span>
+												<label>${prod.totalRating}</label>
+  											</div>
 									</div>
-									<a href="/product/${prod.product_id }" class="orange-text d-flex flex-row-reverse p-2">
-						      	<h5 class="waves-effect waves-light">Read more >></h5>
-    								</a>
-								</div>
+									
+						
 							</div>
+						</div>
 						</div>
 					</c:forEach>
 				</div>
 			</div>
-			<div class="col-3">
-					<c:forEach items="${products}" var="prod" varStatus="row">
-						<div class="card" style="max-height:200px; margin:10px;">
-									<img src="/images/${prod.photoPath }" class="card-img-top" 
-										alt="..." style="max-height:150px; max-weight:auto;">
-										
-									<div class="card-body">		
-											<a href="#" class="card-title">
-											${prod.product_name }
-											</a> 
-									</div>
-								</div>
+			<div class="col-lg-2 mt-1">
+			<h4>Most Reviews</h4>
+			<div class="row">
+		<c:forEach items="${products }" var="p" varStatus="row">
+		<div class="col-md-12 col-4">
+			<div class="card" style="max-height:100px;margin-bottom:10px;overflow:hidden;">
+					<a href="/review/${p.product_id }"> <img alt=".."
+					style="max-height:80px;max-width:auto;"	src="/images/${p.photoPath }">
+						
+					</a>
+					<label style="font-size:12px;">${p.product_name }</label>
+			</div>
+			</div>
+		</c:forEach>
+	</div>
+			</div>
+		</div>
 
-					</c:forEach>
-					</div>
-					</div>
-			</div>
-			</div>
-		<script type="text/javascript">
+</div>
+<script type="text/javascript">
 			function clearSearch() {
 				window.location = "[[@{/product_list}]]";
 			}
 		</script>
-		
-</body>
-</html>

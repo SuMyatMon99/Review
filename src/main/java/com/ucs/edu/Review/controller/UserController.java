@@ -1,8 +1,6 @@
 
 package com.ucs.edu.Review.controller;
 
-import java.security.Principal;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,12 +10,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ucs.edu.Review.dto.LoginUserDTO;
+import com.ucs.edu.Review.dto.UserProfileDTO;
+import com.ucs.edu.Review.service.CurrentUserService;
 import com.ucs.edu.Review.service.IUserService;
 
 @Controller
@@ -26,9 +29,9 @@ public class UserController {
 	@Autowired
 	IUserService userInfoService;
 
-	/*@Autowired
-	SecurityService securityService;
-	*/
+	@Autowired
+	private CurrentUserService currentUserService;
+	
 	@RequestMapping(value="/register.htm",method=RequestMethod.GET)
 	public String register(Model model){
 		model.addAttribute("userDTO", new LoginUserDTO());
@@ -42,7 +45,7 @@ public class UserController {
 		return "redirect:/login.htm";
 	}
 
-	@RequestMapping(value="/login")
+	@RequestMapping("/login")
 	public String login(Model model,String error,String logout){
 		 if (error != null)
 	            model.addAttribute("error", "Your username and password is invalid.");
@@ -52,6 +55,8 @@ public class UserController {
 	        
 		return "login";
 	}
+
+	
 	 @RequestMapping(value="/logout.htm", method=RequestMethod.GET)  
 	    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {  
 	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();  
@@ -61,16 +66,31 @@ public class UserController {
 	         return "redirect:/login.htm";  
 	     } 
 	 
-	 @RequestMapping("/profile")
-	 public String profile(Principal principal,Model model) {
-		 model.addAttribute("username",principal.getName());
+	 @GetMapping("/profile")
+	 public String profile(Model model) {
+		 model.addAttribute("user",currentUserService.getCurrentUser());
+		 model.addAttribute("profile",new UserProfileDTO());
 		 return "profile";
 	 }
-	 
-	@RequestMapping(value="/username",method = RequestMethod.GET)
-	@ResponseBody
-	public String currenntUserName(Principal principal) {
+
 		
-		return principal.getName();
-	}
+		@PostMapping(value="/profile/update")
+		public String saveUploadFile(Model model,@RequestParam("file") MultipartFile file,@RequestParam("username")String name) throws Exception {
+			model.addAttribute("user",currentUserService.getCurrentUser());
+			UserProfileDTO dto = new UserProfileDTO();
+			dto.setFile(file);
+			dto.setUsername(name);
+			if(dto.getFile()!=null) {
+				userInfoService.uploadProfile(dto);
+				}
+			
+			return "redirect:/profile";
+		}
+		
+	 @RequestMapping("/user/user_list")
+	 public String showUserList(Model model) {
+		 model.addAttribute("userList",userInfoService.getAllUser());
+		 return "user_list_view";
+	 }
+	
 }

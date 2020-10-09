@@ -9,8 +9,9 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
+
+//@ComponentScan("com.ucs.edu.Review.*")
 @Configuration
-@ComponentScan("com.ucs.edu.Review.*")
 public class AppConfig {
 
 	@Bean

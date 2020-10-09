@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.ServletContext;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ucs.edu.Review.dto.ProductDTO;
+import com.ucs.edu.Review.dto.RatingProductUpdateDTO;
 import com.ucs.edu.Review.model.Brand;
 import com.ucs.edu.Review.model.Category;
 import com.ucs.edu.Review.model.LoginUser;
@@ -42,11 +44,16 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	private ShopRepository shopRepository;
+	
+	@Autowired
+	private CurrentUserService currentUser;
+	
 	public String UPLOAD_DIRECTORY="/images/";
 	@Override
 	public void SaveProduct(ProductDTO productDTO) throws Exception {
+		
 		Float rate = (float) 5.0000;
-		if(productDTO!=null) {
+		if(productDTO!=null ) {
 		Category cat=categoryRepository.findById(productDTO.getCategory_id()).get();
 		Brand brand=brandRepository.findById(productDTO.getBrand_id()).get();
 		Shop shop = shopRepository.findById(productDTO.getShop_id()).get();
@@ -74,6 +81,7 @@ public class ProductServiceImpl implements ProductService {
 		product.setBrand(brand);
 		product.setCategory(cat);
 		product.setShop(shop);
+		product.setUser(currentUser.getCurrentUser());
 		productRepository.save(product);
 		}
 	}
@@ -116,8 +124,8 @@ public class ProductServiceImpl implements ProductService {
 
 
 	@Override
-	public LoginUser getLoginUser(Long id) {
-		return userRepository.findById(id).get();
+	public LoginUser getLoginUser(String name) {
+		return userRepository.findUserByUsername(name);
 	}
 
 
@@ -127,13 +135,25 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return productRepository.getProductListByCategory(category_id);
 	}
-
-
-
 	@Override
 	public Product getProductById(Long id) {
 		return productRepository.findById(id).get();
 	}
+	@Override
+	public void updateRating(RatingProductUpdateDTO updateDto) {
+		if(updateDto.getProductId()!=null) {
+		productRepository.updateProduct(updateDto.getRating(), updateDto.getProductId());
+		System.out.println(updateDto.getRating());
+		}else {
+			System.out.println("Failed to updated");
+		}
+	}
+
+
+
+
+
+
 
 
 

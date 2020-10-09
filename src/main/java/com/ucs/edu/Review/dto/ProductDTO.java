@@ -12,6 +12,7 @@ public class ProductDTO {
 	private Long category_id;
 	private Long shop_id;
 	private Long brand_id;
+	
 	private Float totalRating;
 
 	public Float getTotalRating() {
