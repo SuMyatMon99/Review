@@ -1,6 +1,7 @@
 package com.ucs.edu.Review.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,18 +23,19 @@ public class CategoryController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/create_category")
 	public String createCategory(Model model) {
+		model.addAttribute("categories", categoryService.getCategoryList());
 		model.addAttribute("category", new CategoryDTO());
 		return "create_category";
 	}
 	
 	@PostMapping("/save_category")
 	public String saveCategory(@ModelAttribute ("category") CategoryDTO category, Model model) {
-		if(category.getCat_name()!=null) {
+		if(category.getCat_name()!="") {
 		categoryService.saveCategory(category);
 		model.addAttribute("categories", categoryService.getCategoryList());
-		return "category_list";
+		return "redirect:/category/category_list";
 		}else {
-			return "redirect:/create_category";
+			return "redirect:/category/create_category";
 		}
 	}
 	
@@ -48,6 +50,11 @@ public class CategoryController {
 	public String deleteCategoryById(Model model,@PathVariable Long id) {
 		categoryService.deleteCategoryById(id);
 		model.addAttribute("categories", categoryService.getCategoryList());
+		return "redirect:/category/category_list";
+	}
+	@RequestMapping("/search")
+	public String searchReview(Model model,@Param("search") String search) {
+		model.addAttribute("categories",categoryService.getCategoryListBySearch(search));
 		return "category_list";
 	}
 }

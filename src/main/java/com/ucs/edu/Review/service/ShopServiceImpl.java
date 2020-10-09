@@ -36,5 +36,11 @@ public class ShopServiceImpl implements ShopService{
 	public void deleteShopById(Long id) {
 		shopRepository.deleteById(id);
 	}
+
+	@Override
+	public List<ShopDTO> getShopList(String search) {
+		List<ShopDTO> dto =shopRepository.getShopListBySearch(search).stream().map(ShopConverter::toDTO).collect(Collectors.toList());
+		return dto;
+	}
 	
 }

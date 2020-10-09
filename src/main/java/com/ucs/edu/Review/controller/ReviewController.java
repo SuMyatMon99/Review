@@ -1,5 +1,7 @@
 package com.ucs.edu.Review.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ucs.edu.Review.dto.RatingProductUpdateDTO;
 import com.ucs.edu.Review.dto.ReviewDTO;
+import com.ucs.edu.Review.model.Product;
 import com.ucs.edu.Review.service.ProductService;
 import com.ucs.edu.Review.service.ReviewsService;
 
@@ -28,22 +31,26 @@ public class ReviewController {
 	public String productDetails(@PathVariable("id") Long id,Model model) {
 		String name = null;
 		System.out.println(id);
+		if(id!=null) {
 		model.addAttribute("product", productService.getProductById(id));
 		model.addAttribute("products",productService.getProductList(name));
 		model.addAttribute("reviews",reviewServices.getReviewList(id));
 		model.addAttribute("review",new ReviewDTO());
 		return "product_detail";
+		}else {
+			return "redirect:/product_list";
+		}
 	}
 
 	@GetMapping("/create")
 	public String createReview(Model model,@Param("productId")Long product_id,@Param("comment")String comment,@Param("rating")Float rate) {
 		String name=null;
 		ReviewDTO dto=new ReviewDTO();
-		if(product_id!=null ) {
+		if(comment!="" && product_id!=null) {
 		dto.setProduct_id(product_id);
 		dto.setComment(comment);
-		dto.setRating(rate);
 		}
+		dto.setRating(rate);
 		model.addAttribute("review", dto);
 		model.addAttribute("products",productService.getProductList(name));
 		model.addAttribute("product",productService.getProductById(dto.getProduct_id()));
@@ -53,11 +60,13 @@ public class ReviewController {
 	@PostMapping("/create")
 	public String saveReview(Model model,@ModelAttribute("review")ReviewDTO dto) throws Exception {
 		String name= null;
+		if(dto.getComment()!="" && dto.getProduct_id()!=null) {
 		reviewServices.saveReview(dto);
 		RatingProductUpdateDTO updateDto = new RatingProductUpdateDTO();
 		updateDto.setProductId(dto.getProduct_id());
 		updateDto.setRating(dto.getRating());
 		productService.updateRating(updateDto);
+		}
 		model.addAttribute("products",productService.getProductList(name));
 		model.addAttribute("product",productService.getProductById(dto.getProduct_id()));
 		model.addAttribute("reviews",reviewServices.getReviewList(dto.getProduct_id()));

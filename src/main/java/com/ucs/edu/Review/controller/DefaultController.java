@@ -31,25 +31,39 @@ public class DefaultController {
 	public String adminHome(Model model) {
 		return "index";
 	}
+	
+	@GetMapping("/admin/adminProfile")
+	public String adminProfile(Model model) {
+		return "admin_profile";
+	}
+	@GetMapping("/admin/adminContact")
+	public String adminContact(Model model) {
+		return "admin_contact";
+	}
 
 	@GetMapping("/blog-details.htm")
 	public String home() {
-		return "/blog-details";
+		return "blog-details";
 	}
 
 	@GetMapping("/blog.htm")
 	public String admin() {
-		return "/blog";
+		return "blog";
+	}
+	
+	@GetMapping("/chartJs")
+	public String showChart() {
+		return "chartJsPage";
 	}
 
 	@GetMapping("/faq.htm")
 	public String user() {
-		return "/faq";
+		return "faq";
 	}
 
 	@GetMapping("/about")
 	public String about() {
-		return "/about";
+		return "about";
 	}
 
 	@RequestMapping(value = "/403.html")

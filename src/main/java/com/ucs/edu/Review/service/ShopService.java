@@ -9,4 +9,5 @@ public interface ShopService {
 	public void saveShop(ShopDTO shopDTO);
 	public List<ShopDTO> getShopList();
 	public void deleteShopById(Long id);
+	public List<ShopDTO> getShopList(String search);
 }

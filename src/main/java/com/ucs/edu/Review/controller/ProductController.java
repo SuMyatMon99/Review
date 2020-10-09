@@ -46,11 +46,11 @@ public class ProductController {
 	
 	@PostMapping("/save_product")
 	public String saveProduct(@ModelAttribute ("product") ProductDTO productDTO, Model model,@Param("keyword")String keyword) throws Exception {
-		if(productDTO.getProduct_name()!=null) {
+		if(productDTO.getProduct_name()!="") {
 		productService.SaveProduct(productDTO);
 		model.addAttribute("products", productService.getProductList(keyword));
 		model.addAttribute("categories", productService.getCategoryList());
-		return "product_list";
+		return "redirect:/product_list";
 		}else {
 			return "redirect:/create_product";
 		}
@@ -64,11 +64,15 @@ public class ProductController {
 	
 	@RequestMapping("/product_list/{cat_id}")
 	public String showProductListByCategory(Model model, @PathVariable("cat_id") Long id) {
+		if(id!=null) {
 		model.addAttribute("categories", productService.getCategoryList());
 		List<Product> productList = productService.getProductListByCategory(id);
 		model.addAttribute("products", productList);
 		model.addAttribute("cat_id", id);
 		return "product_list";
+		}else {
+			return "redirect:/product_list";
+		}
 	}
 	/*
 	 * @RequestMapping("/product_list/{cat_id}/{keyword}") public String

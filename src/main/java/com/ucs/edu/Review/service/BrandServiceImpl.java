@@ -39,6 +39,12 @@ public class BrandServiceImpl implements BrandService{
 	public void deleteBand(Long id) {
 		brandRepository.deleteById(id);
 	}
+
+	@Override
+	public List<BrandDTO> getBrandListBySearch(String name) {
+		List<BrandDTO> dto =brandRepository.getBrandListByCriteriaSearch(name).stream().map(BrandConverter::toDTO).collect(Collectors.toList());
+		return dto;
+	}
 	
 	
 }

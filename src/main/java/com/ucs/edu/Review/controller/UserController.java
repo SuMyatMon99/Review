@@ -32,9 +32,6 @@ public class UserController {
 	@Autowired
 	private CurrentUserService currentUserService;
 	
-	/*@Autowired
-	SecurityService securityService;
-	*/
 	@RequestMapping(value="/register.htm",method=RequestMethod.GET)
 	public String register(Model model){
 		model.addAttribute("userDTO", new LoginUserDTO());
@@ -59,16 +56,7 @@ public class UserController {
 		return "login";
 	}
 
-	/*
-	 * @RequestMapping("/admin/login") public String adminlogin(Model model,String
-	 * error,String logout){ if (error != null) model.addAttribute("error",
-	 * "Your username and password is invalid.");
-	 * 
-	 * if (logout != null) model.addAttribute("message",
-	 * "You have been logged out successfully.");
-	 * 
-	 * return "/admin/login"; }
-	 */
+	
 	 @RequestMapping(value="/logout.htm", method=RequestMethod.GET)  
 	    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {  
 	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();  
@@ -85,18 +73,7 @@ public class UserController {
 		 return "profile";
 	 }
 
-		/*
-		 * @PostMapping("/profile/update") public String saveProfile(Model
-		 * model,@ModelAttribute("profile")UserProfileDTO dto) throws Exception {
-		 * if(dto.getFile()!=null) { userInfoService.uploadProfile(dto); }
-		 * model.addAttribute("user",currentUserService.getCurrentUser()); return
-		 * "profile";
-		 * 
-		 * }
-		 */
 		
-	 
-	 	//updated profile with ajax in profile.jsp
 		@PostMapping(value="/profile/update")
 		public String saveUploadFile(Model model,@RequestParam("file") MultipartFile file,@RequestParam("username")String name) throws Exception {
 			model.addAttribute("user",currentUserService.getCurrentUser());
@@ -107,7 +84,7 @@ public class UserController {
 				userInfoService.uploadProfile(dto);
 				}
 			
-			return "profile";
+			return "redirect:/profile";
 		}
 		
 	 @RequestMapping("/user/user_list")

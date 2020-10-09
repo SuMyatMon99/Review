@@ -1,4 +1,3 @@
- <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
  <%@ include file="/WEB-INF/common/include.jsp"%>   
  <header class="header-section">
         <div class="header-top">
@@ -16,7 +15,6 @@
 				<a href="/logout" class="login-panel">Logout</a>                
                 <a href="/profile" class="login-panel">
 						<sec:authentication property="principal.username"/></a>
-         
 				</sec:authorize>
 						
 				<sec:authorize access="isAnonymous()">

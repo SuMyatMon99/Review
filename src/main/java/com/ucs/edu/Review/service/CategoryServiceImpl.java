@@ -38,4 +38,10 @@ public class CategoryServiceImpl implements CategoryService {
 		categoryRepository.deleteById(id);
 	}
 
+	@Override
+	public List<CategoryDTO> getCategoryListBySearch(String name) {
+		List<CategoryDTO> dto = categoryRepository.getCategoryListBySearch(name).stream().map(CategoryConverter::toDTO).collect(Collectors.toList());
+		return dto;
+	}
+
 }

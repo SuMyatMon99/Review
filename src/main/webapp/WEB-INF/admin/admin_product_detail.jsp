@@ -1,6 +1,5 @@
 <%@ include file="/WEB-INF/common/include.jsp"%>
 
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#show").click(function() {
@@ -19,11 +18,27 @@
 				menubar : false
 			});
 </script>
-
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Manage Product</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Details</li>
+            </ol>
+           
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+      <a href="/admin/product_list" class="btn btn-primary"> < Back to Product List</a>
+    </div>  
 <div class="container">
 	<div class="row mt-5 mb-5 text-wrap">
-	<div class="col-lg-1"></div>
-	<div class="col-lg-9">
 		<div class="col-lg-6 col-12">
 			<img src="/images/${product.photoPath}" class="img" alt="...">
 		</div>
@@ -42,14 +57,12 @@
 			<p class="card-text text-justify">${product.descr }</p>
 			<div class="row">
 				<div class="col-6">
-					<a href="#" id="show" class="btn btn-custom d-block"
+					<a href="#" id="show" class="btn btn-primary d-block"
 						data-toggle="modal" data-whatever="@fat">Review</a>
 
 				</div>
 				<div class="col-6">
-					<a href="#" id="show" class="btn btn-custom d-block"
-						data-toggle="modal" data-target="#exampleModal"
-						data-whatever="@getbootstrap">Rating</a>
+					<a href="/admin/review/${product.product_id }" class="btn btn-primary d-block">Manage Comment</a>
 				</div>
 			</div>
 
@@ -102,7 +115,7 @@
 
 		</div>
 		<div class="commentBox col-lg-12 col-12">
-			<div class="col-lg-12 col-12">
+			<div class="col-md-12">
 				<c:forEach items="${reviews }" var="r" varStatus="row">
 					<div class="card">
 						<div class="card-header">
@@ -116,14 +129,14 @@
 						</div>
 					</div>
 				</c:forEach>
-				<div class="col-lg-12">
+				<div class="col-md-12">
 					<form action="/review/create" method="post">
-						<div class="col-lg-6">
+						<div class="col-md-6">
 							<input type="hidden" value="${product.product_id }"
 								name="product_id" />
 						</div>
 							<div class="form-group">							
-							<div class="col-lg-12">
+							<div class="col-md-12">
 								<textarea id="editor" name="comment"
 									placeholder="Write your isssue"></textarea>
 						</div>
@@ -142,29 +155,23 @@
     											<label for="star1" title="text">1 star</label>
   											</div>
 									</div>
-								<button type="submit" class="btn btn-custom d-block">Submit</button>
-
+								<button type="submit" class="btn btn-primary d-block">Submit</button>
 
 					</form>
 				</div>
 			</div>
 		</div>
-		</div>
-		<div class="col-lg-2 mt-1">
-			<h4>Related Reviews</h4>
-			<div class="row">
+	<div class="row">
 		<c:forEach items="${products }" var="p" varStatus="row">
-		<div class="col-md-12 col-4">
-			<div class="card" style="max-height:100px;margin-bottom:10px;overflow:hidden;">
+			<div class="card col-lg-3">
+				<div class="col-sm-10">
 					<a href="/review/${p.product_id }"> <img alt=".."
-					style="max-height:80px;max-width:auto;"	src="/images/${p.photoPath }">
-						
+						class="d-block w-100 m-2 card-img" src="/images/${p.photoPath }">
 					</a>
-					<label style="font-size:12px;">${p.product_name }</label>
-			</div>
+				</div>
 			</div>
 		</c:forEach>
 	</div>
-			</div>
+</div>
 </div>
 </div>

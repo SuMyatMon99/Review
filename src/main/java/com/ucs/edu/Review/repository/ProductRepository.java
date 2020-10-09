@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ucs.edu.Review.model.Product;
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long>{
+public interface ProductRepository extends JpaRepository<Product, Long>,ProductCriteriaRepository{
 	
 	@Query("SELECT p FROM Product p WHERE CONCAT(p.product_name, p.descr, p.price) LIKE %?1% and p.category.cat_id=2")
 	public List<Product> search(String keyword);

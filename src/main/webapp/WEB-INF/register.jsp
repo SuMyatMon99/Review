@@ -1,8 +1,4 @@
 <%@ include file="/WEB-INF/common/include.jsp"%>
-<%@page isELIgnored="false" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>

@@ -1,6 +1,7 @@
 package com.ucs.edu.Review.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ucs.edu.Review.dto.BrandDTO;
-import com.ucs.edu.Review.model.Product;
 import com.ucs.edu.Review.service.BrandService;
 
 @Controller
@@ -40,10 +40,22 @@ public class BrandController {
 	}
 	@RequestMapping("/brand_delete/{id}")
 	public String deleteBrandById(Model model,@PathVariable Long id) {
+		if(id!=null) {
 		brandService.deleteBand(id);
-		model.addAttribute("brands",brandService.getBrandList());
-		return "brand_list";
+		return "redirect:/brand/brand_list";
+		}else {
+			return "redirect:/brand/brand_list";
+		}
 	}
 	
+	@RequestMapping("/search")
+	public String searchReview(Model model,@Param("search")String search) {
+		if(search!="") {
+		model.addAttribute("brands",brandService.getBrandListBySearch(search));
+		return "brand_list";
+		}else {
+			return "redirect:/brand/brand_list";
+		}
+	}
 	
 }

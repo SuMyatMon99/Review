@@ -4,39 +4,56 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
- <definition name="layout.admin" template="/WEB-INF/layout1/master.jsp">
-        <put-attribute name="header" value="/WEB-INF/layout1/header.jsp" />
+ <definition name="layout.admin" template="/WEB-INF/admin/layout1/master.jsp">
+        <put-attribute name="header" value="/WEB-INF/admin/layout1/header.jsp" />
         <put-attribute name="body" value="" />
-        <put-attribute name="footer" value="/WEB-INF/layout1/footer.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/admin/layout1/footer.jsp" />
     </definition>
     
     <!-- Pages -->        
     <definition name="admin_product_list" extends="layout.admin">
-        <put-attribute name="body" value="/WEB-INF/admin_product_list.jsp" />
+        <put-attribute name="body" value="/WEB-INF/admin/admin_product_list.jsp" />
     </definition>
     
-    <definition name="product_detail" extends="layout.admin">
-    	<put-attribute name="body" value="/WEB-INF/product_detail.jsp" />
+    <!-- Admin Profile -->
+     <definition name="admin_profile" extends="layout.admin">
+        <put-attribute name="body" value="/WEB-INF/admin/adminProfile.jsp" />
     </definition>
+    
+     <definition name="admin_contact" extends="layout.admin">
+        <put-attribute name="body" value="/WEB-INF/admin/adminContact.jsp" />
+    </definition>
+    
+    <definition name="chartJsPage" extends="layout.admin">
+        <put-attribute name="body" value="/WEB-INF/chart/chartJs.jsp"/>
+    </definition>
+    
+    <definition name="manage_review" extends="layout.admin">
+        <put-attribute name="body" value="/WEB-INF/admin/manage_review.jsp" />
+    </definition>
+    <definition name="admin_product_detail" extends="layout.admin">
+        <put-attribute name="body" value="/WEB-INF/admin/admin_product_detail.jsp" />
+    </definition>
+    
     <definition name="category_list" extends="layout.admin">
-    	<put-attribute name="body" value="/WEB-INF/category_list.jsp" />
+    	<put-attribute name="body" value="/WEB-INF/admin/category_list.jsp" />
     </definition>
     
     <definition name="brand_list" extends="layout.admin">
-    	<put-attribute name="body" value="/WEB-INF/brand_list.jsp" />
+    	<put-attribute name="body" value="/WEB-INF/admin/brand_list.jsp" />
     </definition>
     <definition name="shop_list" extends="layout.admin">
-    	<put-attribute name="body" value="/WEB-INF/shop_list.jsp" />
+    	<put-attribute name="body" value="/WEB-INF/admin/shop_list.jsp" />
     </definition>
     <definition name="create_category" extends="layout.admin">
-    	<put-attribute name="body" value="/WEB-INF/create_category.jsp" />
+    	<put-attribute name="body" value="/WEB-INF/admin/create_category.jsp" />
     </definition>
    
     <definition name="create_brand" extends="layout.admin">
-    	<put-attribute name="body" value="/WEB-INF/create_brand.jsp" />
+    	<put-attribute name="body" value="/WEB-INF/admin/create_brand.jsp" />
     </definition>
     <definition name="create_shop" extends="layout.admin">
-    	<put-attribute name="body" value="/WEB-INF/create_shop.jsp" />
+    	<put-attribute name="body" value="/WEB-INF/admin/create_shop.jsp" />
     </definition>
     <!-- Templates -->      
     <definition name="layout.basic" template="/WEB-INF/layout/master.jsp">

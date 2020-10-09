@@ -1,20 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@ include file="/WEB-INF/common/include.jsp"%>
-<%@page isELIgnored="false" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Shop</title>
 <style>
 	.form-margin{
 		margin-left:300px;
 	}
 </style>
-</head>
-<body>
-<%@ include file="bootstrap.jsp" %>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -53,6 +42,3 @@
 </form:form>
 </div>
 </div>
-
-</body>
-</html>

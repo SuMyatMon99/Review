@@ -8,4 +8,6 @@ import com.ucs.edu.Review.model.Review;
 public interface ReviewsService {
 	public void saveReview(ReviewDTO dto);
 	public List<Review> getReviewList(Long product_id);
+	public void deleteReview(Long id);
+	public List<Review> getReviewListBySearch(String search);
 }

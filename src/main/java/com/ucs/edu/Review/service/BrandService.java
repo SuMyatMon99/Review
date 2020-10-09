@@ -9,5 +9,5 @@ public interface BrandService {
 	public void saveBrand(BrandDTO brandDTO);
 	public List<BrandDTO> getBrandList();
 	public void deleteBand(Long id);
-	
+	public List<BrandDTO> getBrandListBySearch(String name);
 }
